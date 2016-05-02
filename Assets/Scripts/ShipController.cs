@@ -54,4 +54,16 @@ public class ShipController : SteeringVehicle {
 			return ((float)numberOfHits) / shotsFired;
 		}
 	}
+
+	public float TimeAlive {
+		get {
+			return lifeTime;
+		}
+	}
+
+	public float Aggressiveness {
+		set {
+			aggressiveness = value;
+		}
+	}
 }

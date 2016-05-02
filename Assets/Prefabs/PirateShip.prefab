@@ -42,7 +42,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 184468}
-  m_LocalRotation: {x: 0.6643482, y: -0.24188657, z: 0.24180299, w: 0.66457784}
+  m_LocalRotation: {x: .664348185, y: -.241886571, z: .24180299, w: .664577842}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -82,7 +82,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
@@ -129,7 +129,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 0
-  m_Mesh: {fileID: 4300000, guid: 4b440f170e81bec4aa725fdc02ca4c42, type: 3}
+  m_Mesh: {fileID: 4300000, guid: b10dbf1081a91c54d948bfca5f9038ce, type: 3}
 --- !u!114 &11422594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,9 +148,12 @@ MonoBehaviour:
   mass: 1
   maxForce: 100
   maxSpeed: 30
-  wanderAngSpeed: 0.3926991
+  wanderAngSpeed: .392699093
   slowingDistance: 10
+  obstacleAvoidanceDistance: 10
+  flockRadius: 300
   separation: 1
+  separationDistance: 50
   cohesion: 1
   alignmnet: 1
   laserBase: {fileID: 0}
@@ -191,6 +194,10 @@ Prefab:
       propertyPath: maxSpeed
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: b10dbf1081a91c54d948bfca5f9038ce, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 163886}
