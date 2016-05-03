@@ -117,7 +117,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 0
-  m_Mesh: {fileID: 4300000, guid: 4b440f170e81bec4aa725fdc02ca4c42, type: 3}
+  m_Mesh: {fileID: 4300000, guid: a109d744a779545ec89d698bbfa958e9, type: 3}
 --- !u!64 &6486510
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -150,7 +150,10 @@ MonoBehaviour:
   maxSpeed: 30
   wanderAngSpeed: 0.3926991
   slowingDistance: 10
+  obstacleAvoidanceDistance: 10
+  flockRadius: 300
   separation: 1
+  separationDistance: 50
   cohesion: 1
   alignmnet: 1
   laserBase: {fileID: 0}

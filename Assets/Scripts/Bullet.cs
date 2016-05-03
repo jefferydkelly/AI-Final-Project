@@ -24,6 +24,7 @@ public class Bullet : MonoBehaviour {
 	void OnTriggerEnter(Collider col) {
 		ShipController sc = myController.GetComponent<ShipController> ();
 		//Update hits
+		Debug.Log("Hit");
 		sc.TakeDamage(dmg);
 		myController.RegisterHit ();
 		Remove ();

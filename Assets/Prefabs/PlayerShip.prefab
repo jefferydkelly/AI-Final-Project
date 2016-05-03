@@ -103,7 +103,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 0
-  m_Mesh: {fileID: 4300000, guid: b966a51581ce9c84380a9fa6c3b7ca56, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 782ea722f1f544d499a02ecbb8d9910b, type: 3}
 --- !u!114 &11421526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -115,8 +115,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82caa19f5e04d6c43b30fc53cc5cde67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 60
+  wanderOffset: 5
+  wanderRadius: 2
+  fleeDistance: 100
+  fireDistance: 25
+  mass: 1
+  maxForce: 100
   maxSpeed: 100
+  wanderAngSpeed: 1.5707964
+  slowingDistance: 10
+  obstacleAvoidanceDistance: 10
+  flockRadius: 300
+  separation: 1
+  separationDistance: 50
+  cohesion: 1
+  alignmnet: 1
+  laserBase: {fileID: 0}
+  rotationSpeed: 60
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
