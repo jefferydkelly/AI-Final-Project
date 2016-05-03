@@ -47,7 +47,7 @@ public class PirateShipController : ShipController {
 
 	protected override void CalcMoveState ()
 	{
-		if (moveStatus == MovementStatus.Wander) {
+		if (moveStatus == MovementStatus.Wander || moveStatus == MovementStatus.Flock) {
 			if (AlliesAndEnemiesInRadius (chaseMerchDistance) > aggressiveness && areTargetsInRange(false)) {
                 GameObject tar = FindTarget();
 
