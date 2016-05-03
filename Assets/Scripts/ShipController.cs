@@ -11,7 +11,7 @@ public class ShipController : SteeringVehicle {
 	private int numberOfHits = 0;
 	protected float lifeTime = 0.0f;
 	protected float aggressiveness = 1.0f;
-
+	protected List<string> enemyTags = new List<string>();
 	void Start() {
 		lifeTime = 0.0f;
 		depth = GetComponent<MeshRenderer> ().bounds.size.z;
@@ -37,8 +37,11 @@ public class ShipController : SteeringVehicle {
 		
 	public void TakeDamage(int dmg) {
 		hp -= dmg;
-		if (hp < 0) {
-			Destroy (this);
+		Debug.Log ("I've been hit.");
+		Debug.Log ("I'm taking " + dmg + " damage");
+		if (hp <= 0) {
+			Debug.Log ("I have been defeated");
+			Destroy (gameObject);
 		}
 	}
 	void ResetCooldown() {
@@ -65,5 +68,9 @@ public class ShipController : SteeringVehicle {
 		set {
 			aggressiveness = value;
 		}
+	}
+
+	public bool IsEnemy(string tag) {
+		return enemyTags.Contains (tag);
 	}
 }

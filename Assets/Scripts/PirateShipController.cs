@@ -13,6 +13,9 @@ public class PirateShipController : ShipController {
 		myRenderer = GetComponentInChildren<Renderer> ();
 		//Wander ();
 		Flock();
+		enemyTags.Add ("Merchant");
+		enemyTags.Add ("Police");
+		enemyTags.Add ("Player");
     }
 	protected override void Update ()
 	{

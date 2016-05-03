@@ -2380,6 +2380,8 @@ MonoBehaviour:
   pirate: {fileID: 163886, guid: 1dd00d1e83ad47042819d2555312452a, type: 2}
   pircount: 0
   spawndelay: 3
+  pirateshiplist: []
+  maxpir: 100
 --- !u!4 &1917562859
 Transform:
   m_ObjectHideFlags: 0

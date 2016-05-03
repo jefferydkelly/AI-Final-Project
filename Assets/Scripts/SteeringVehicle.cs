@@ -31,6 +31,7 @@ public class SteeringVehicle : MonoBehaviour {
     protected Vector3 targetPos;// = null;
 
 	protected Renderer myRenderer;
+	private Vector3 lastFwd = new Vector3(0, 0, 1);
 	// Use this for initialization
 	void Start () 
 	{
@@ -256,7 +257,12 @@ public class SteeringVehicle : MonoBehaviour {
 
 	public Vector3 Forward {
 		get {
-			return velocity.normalized;
+			Vector3 fwd = velocity.normalized;
+
+			if (fwd.magnitude != 0) {
+				lastFwd = fwd;
+			}
+			return lastFwd;
 		}
 	}
 }

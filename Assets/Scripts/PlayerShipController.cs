@@ -10,6 +10,9 @@ public class PlayerShipController : ShipController {
 	// Use this for initialization
 	void Start () {
 		maxSpeed = 100;
+		enemyTags.Add ("Pirate");
+		enemyTags.Add ("Merchant");
+		enemyTags.Add ("Police");
 	}
 	
 	// Update is called once per frame

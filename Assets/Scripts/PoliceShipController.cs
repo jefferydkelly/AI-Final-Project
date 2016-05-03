@@ -10,6 +10,8 @@ public class PoliceShipController : ShipController {
 	void Start() {
 		myRenderer = GetComponentInChildren<Renderer> ();
 		Wander ();
+		enemyTags.Add ("Player");
+		enemyTags.Add ("Pirate");
 	}
 	protected override void Update ()
 	{

@@ -103,10 +103,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ce8003f15be4b7c920418e04f7e8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 5
+  dmg: 20
   moveSpeed: 100
   lifeSpan: 5
   depth: 0
+  fwd: {x: 0, y: 0, z: 0}
+  myController: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

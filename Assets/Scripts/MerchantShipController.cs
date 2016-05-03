@@ -9,6 +9,8 @@ public class MerchantShipController : ShipController {
 	{
 		myRenderer = GetComponentInChildren<Renderer> ();
 		Wander ();
+		enemyTags.Add ("Merchant");
+		enemyTags.Add ("Player");
     }
 
     protected override Vector3 CalcSteeringForce()
