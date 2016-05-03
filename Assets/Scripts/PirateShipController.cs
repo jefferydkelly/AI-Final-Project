@@ -34,12 +34,17 @@ public class PirateShipController : ShipController {
 		if (moveStatus == MovementStatus.Flee) {
 			steeringForce = SV_Flee (target) + (SV_Wander () * 0.5f);
 		} else if (moveStatus == MovementStatus.Seek) {
-            steeringForce = SV_Seek (target) + (SV_Wander () * 0.5f);
+			steeringForce = SV_Seek (target) + (SV_Wander () * 0.5f);
 		} else if (moveStatus == MovementStatus.Wander) {
-            steeringForce = SV_Wander ();
+			steeringForce = SV_Wander ();
 		} else if (moveStatus == MovementStatus.Flock) {
-            steeringForce = SV_Flock () + SV_Wander ();
+			steeringForce = SV_Flock () + SV_Wander ();
+		} else if (moveStatus == MovementStatus.FlockSeek) {
+			steeringForce = SV_Seek (target) + SV_Flock ();
+		} else if (moveStatus == MovementStatus.FlockFlee) {
+			steeringForce = SV_Flee (target) + SV_Flock ();
 		}
+
         if (moveStatus != MovementStatus.Idle)
         {
             steeringForce += AvoidObstacles();
@@ -56,7 +61,12 @@ public class PirateShipController : ShipController {
 
                 if (tar != null)
                 {
-                    Flee(tar);
+					if (moveStatus == MovementStatus.Flock) {
+						AlertFlock (tar, false);
+						moveStatus = MovementStatus.FlockFlee;
+					} else {
+						Flee (tar);
+					}
                 }
 				
 			} else if (areTargetsInRange (true)) {
@@ -64,14 +74,19 @@ public class PirateShipController : ShipController {
 
                 if (tar != null)
                 {
-                    Seek(tar);
+					if (moveStatus == MovementStatus.Flock) {
+						AlertFlock (tar, true);
+						moveStatus = MovementStatus.FlockSeek;
+					} else {
+						Seek (tar);
+					}
                 }
             }
-		} else if (moveStatus == MovementStatus.Flee) {
+		} else if (moveStatus == MovementStatus.Flee || moveStatus == MovementStatus.FlockFlee) {
 			if (!areTargetsInRange (false)) {
 				Wander ();
 			}
-		} else if (moveStatus == MovementStatus.Seek) {
+		} else if (moveStatus == MovementStatus.Seek || moveStatus == MovementStatus.FlockSeek) {
 			if (!areTargetsInRange (true)) {
 				Wander ();
 			}
@@ -137,5 +152,16 @@ public class PirateShipController : ShipController {
 		}
 
 		return alliesInRadius / enemiesInRadius;
+	}
+
+	protected override void AlertFlock (GameObject tar, bool seek)
+	{
+		foreach (SteeringVehicle sv in flock) {
+			if (seek) {
+				sv.AlertSeek (tar);
+			} else {
+				sv.AlertFlee (tar);
+			}
+		}
 	}
 }

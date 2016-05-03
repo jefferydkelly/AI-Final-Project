@@ -222,6 +222,11 @@ public class SteeringVehicle : MonoBehaviour {
         targetPos = pos;
     }
 
+	public void AlertSeek(GameObject go) {
+		target = go;
+		targetPos = null;
+		moveStatus = MovementStatus.FlockSeek;
+	}
 	public void Flee() {
 		moveStatus = MovementStatus.Flee;
 		myRenderer.material.color = Color.blue;
@@ -240,6 +245,12 @@ public class SteeringVehicle : MonoBehaviour {
         targetPos = pos;
     }
 
+	public void AlertFlee(GameObject go) {
+		target = go;
+		targetPos = null;
+		moveStatus = MovementStatus.FlockFlee;
+	}
+
     public void Idle() {
 		moveStatus = MovementStatus.Idle;
 		myRenderer.material.color = Color.yellow;
@@ -253,6 +264,9 @@ public class SteeringVehicle : MonoBehaviour {
 	public void Flock() {
 		moveStatus = MovementStatus.Flock;
 		myRenderer.material.color = Color.white;
+	}
+
+	protected virtual void AlertFlock(GameObject tar, bool seek) {
 	}
 
 	public Vector3 Forward {
@@ -269,5 +283,6 @@ public class SteeringVehicle : MonoBehaviour {
 
 public enum MovementStatus
 {
-    Idle, Wander, Seek, Arrive, Pursue, Flee, Evade, Flock
+    Idle, Wander, Seek, Arrive, Pursue, Flee, Evade, Flock, FlockSeek, FlockFlee
 }
+	
