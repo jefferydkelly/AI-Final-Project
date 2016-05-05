@@ -14,10 +14,17 @@ public class AsteroidSource : MonoBehaviour {
 	{
 		asteroidcount = 0;
 		timecount = 0;
+		float radius = 1000;
+		for (int i = 0; i < max_asteroids; i++) {
+			float ang = i * 360.0f / max_asteroids;
+			GameObject astoroid = (GameObject)Instantiate (asteroid1);
+			astoroid.transform.position = new Vector3 (Mathf.Sin (ang), 0, Mathf.Cos (ang)) * radius;
+		}
 	}
 	
 	void Update () 
 	{
+		/*
 		timecount += Time.deltaTime;
 		if ((timecount > spawndelay)&&(asteroidcount<max_asteroids)) 
 		{
@@ -25,7 +32,7 @@ public class AsteroidSource : MonoBehaviour {
 			timecount = 0;
 			asteroidcount++;
 			spawndelay = Random.Range (0.5f, 1.5f);
-		}
+		}*/
 	}
 
 	void Spawn() 

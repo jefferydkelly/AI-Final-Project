@@ -20,6 +20,7 @@ public class PirateShipController : ShipController {
 	protected override void Update ()
 	{
 		base.Update ();
+		Debug.Log (moveStatus);
 		if ((moveStatus == MovementStatus.Seek || (moveStatus == MovementStatus.FlockSeek))) {
 			float dist = (target.transform.position - transform.position).magnitude;
 
@@ -48,7 +49,7 @@ public class PirateShipController : ShipController {
 
         if (moveStatus != MovementStatus.Idle)
         {
-            steeringForce += AvoidObstacles();
+			steeringForce += AvoidObstacles() * obstacleAvoidanceWeight;
         }
 
         return steeringForce;

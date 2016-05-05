@@ -98,6 +98,7 @@ GameObject:
   - 23: {fileID: 48627704}
   - 114: {fileID: 48627708}
   - 114: {fileID: 48627709}
+  - 114: {fileID: 48627710}
   m_Layer: 0
   m_Name: Planet A
   m_TagString: Planet
@@ -195,6 +196,18 @@ MonoBehaviour:
   polcount: 0
   max_police: 3
   spawndelay: 3
+--- !u!114 &48627710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 48627703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d90d223fda54b77a732ebdde53d18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 50
 --- !u!1 &399405215
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +399,7 @@ GameObject:
   - 135: {fileID: 1228332666}
   - 23: {fileID: 1228332665}
   - 114: {fileID: 1228332669}
+  - 114: {fileID: 1228332670}
   m_Layer: 0
   m_Name: Planet B
   m_TagString: Planet
@@ -468,6 +482,18 @@ MonoBehaviour:
   radiusSpeed: 10
   rotationSpeed: 5
   spinspeed: 30
+--- !u!114 &1228332670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1228332664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d90d223fda54b77a732ebdde53d18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 60
 --- !u!1 &1315989336
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +509,7 @@ GameObject:
   - 108: {fileID: 1315989342}
   - 198: {fileID: 1315989344}
   - 199: {fileID: 1315989343}
+  - 114: {fileID: 1315989345}
   m_Layer: 0
   m_Name: Sol
   m_TagString: Obstacle
@@ -2132,6 +2159,18 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
+--- !u!114 &1315989345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1315989336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d90d223fda54b77a732ebdde53d18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 150
 --- !u!1 &1340215892
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,7 +2309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroid1: {fileID: 100000, guid: 79bce83937e43d042843a359e671ca99, type: 2}
-  max_asteroids: 300
+  max_asteroids: 50
   spawndelay: 0.5
 --- !u!1 &1722046695
 GameObject:
@@ -2284,6 +2323,7 @@ GameObject:
   - 135: {fileID: 1722046697}
   - 23: {fileID: 1722046696}
   - 114: {fileID: 1722046700}
+  - 114: {fileID: 1722046701}
   m_Layer: 0
   m_Name: Planet C
   m_TagString: Planet
@@ -2366,6 +2406,18 @@ MonoBehaviour:
   radiusSpeed: 10
   rotationSpeed: 30
   spinspeed: -50
+--- !u!114 &1722046701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1722046695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d90d223fda54b77a732ebdde53d18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 40
 --- !u!1 &1917562857
 GameObject:
   m_ObjectHideFlags: 0
@@ -2424,6 +2476,7 @@ GameObject:
   - 135: {fileID: 2059319488}
   - 23: {fileID: 2059319487}
   - 114: {fileID: 2059319491}
+  - 114: {fileID: 2059319492}
   m_Layer: 0
   m_Name: Planet D
   m_TagString: Planet
@@ -2506,3 +2559,15 @@ MonoBehaviour:
   radiusSpeed: 10
   rotationSpeed: 10
   spinspeed: 200
+--- !u!114 &2059319492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2059319486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d90d223fda54b77a732ebdde53d18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 25

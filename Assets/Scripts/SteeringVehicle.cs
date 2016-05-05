@@ -17,7 +17,8 @@ public class SteeringVehicle : MonoBehaviour {
     private float wanderAng = Mathf.PI;
     public float wanderAngSpeed = Mathf.PI / 2;
     public float slowingDistance = 10;
-    public float obstacleAvoidanceDistance = 10;
+    public float obstacleAvoidanceDistance = 200;
+	public float obstacleAvoidanceWeight = 5.0f;
 	protected List<SteeringVehicle> flock;
 	public float flockRadius = 300;
 	public float separation = 1.0f;
@@ -178,12 +179,15 @@ public class SteeringVehicle : MonoBehaviour {
     }
 
 	public virtual Vector3 SV_Avoid_Obstacle(GameObject obstacle) {
-		Vector3 fwd = transform.forward.normalized;
-		float dot = Vector3.Dot (fwd, obstacle.transform.position - transform.position);
-        if (dot > 0 && dot < obstacleAvoidanceDistance)
-        {
-            return SV_Flee(obstacle);
-        }
+		ObstacleController oc = obstacle.GetComponent<ObstacleController> ();
+		if (oc != null) {
+			Vector3 fwd = transform.forward.normalized;
+			Vector3 dif = obstacle.transform.position - transform.position;
+			float dot = Vector3.Dot (fwd, dif);
+			if (dot > 0 && dot < (obstacleAvoidanceDistance + oc.radius)) {
+				return new Vector3 (-dif.z, 0, dif.x) * maxSpeed - velocity;
+			}
+		}
         return Vector3.zero;
 	}
 
