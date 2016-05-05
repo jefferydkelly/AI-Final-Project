@@ -25,10 +25,12 @@ public class Bullet : MonoBehaviour {
 		ShipController sc = myController.GetComponent<ShipController> ();
 		ShipController ec = col.gameObject.GetComponent<ShipController> ();
 		//Update hits
-		if (sc.IsEnemy (col.tag)) {
-			ec.TakeDamage (dmg);
-			myController.RegisterHit ();
-			Remove ();
+		if (ec != null) {
+			if (sc.IsEnemy (col.tag)) {
+				ec.TakeDamage (dmg);
+				myController.RegisterHit ();
+				Remove ();
+			}
 		}
 	}
 }

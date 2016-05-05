@@ -338,7 +338,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 465072, guid: bebead082f7c39f49b4abba338736263, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.7493339
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 465072, guid: bebead082f7c39f49b4abba338736263, type: 2}
       propertyPath: m_LocalPosition.z
@@ -386,7 +386,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 199948, guid: bebead082f7c39f49b4abba338736263, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6458868, guid: bebead082f7c39f49b4abba338736263, type: 2}
       propertyPath: m_Convex
@@ -561,6 +561,10 @@ Prefab:
       propertyPath: separationDistance
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 3331688, guid: 1dd00d1e83ad47042819d2555312452a, type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: a109d744a779545ec89d698bbfa958e9, type: 3}
     m_RemovedComponents:
     - {fileID: 11480308, guid: 1dd00d1e83ad47042819d2555312452a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1dd00d1e83ad47042819d2555312452a, type: 2}

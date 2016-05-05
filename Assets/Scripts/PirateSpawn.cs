@@ -51,7 +51,7 @@ public class PirateSpawn : MonoBehaviour {
 		pirateshiplist [pircount] = (GameObject)Instantiate (pirate, transform.position, transform.rotation);
 		if (UsingGA) {
 			if(firstgeneration){
-				pirateshiplist[pircount].GetComponent<PirateShipController> ().
+				//pirateshiplist[pircount].GetComponent<PirateShipController> ().
 			}
 		}
 		//pirclone.transform.Rotate (Vector3.up, Random.Range (0, 359));

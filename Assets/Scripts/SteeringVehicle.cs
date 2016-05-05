@@ -224,7 +224,7 @@ public class SteeringVehicle : MonoBehaviour {
 
 	public void AlertSeek(GameObject go) {
 		target = go;
-		targetPos = null;
+		targetPos = Vector3.zero;
 		moveStatus = MovementStatus.FlockSeek;
 	}
 	public void Flee() {
@@ -247,7 +247,7 @@ public class SteeringVehicle : MonoBehaviour {
 
 	public void AlertFlee(GameObject go) {
 		target = go;
-		targetPos = null;
+		targetPos = Vector3.zero;
 		moveStatus = MovementStatus.FlockFlee;
 	}
 

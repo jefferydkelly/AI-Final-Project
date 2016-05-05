@@ -27,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 2.7493339, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,6 +111,12 @@ MonoBehaviour:
   maxSpeed: 30
   wanderAngSpeed: 1.5707964
   slowingDistance: 10
+  obstacleAvoidanceDistance: 10
+  flockRadius: 300
+  separation: 1
+  separationDistance: 50
+  cohesion: 1
+  alignmnet: 1
   laserBase: {fileID: 115404, guid: 386fcf0b0826643b290e09accd7969de, type: 2}
 --- !u!1001 &100100000
 Prefab:
