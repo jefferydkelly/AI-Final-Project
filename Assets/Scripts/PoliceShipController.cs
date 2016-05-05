@@ -17,7 +17,7 @@ public class PoliceShipController : ShipController {
 		base.Update ();
 
 		if (moveStatus == MovementStatus.Seek) {
-			float dist = (goTarget.transform.position - transform.position).magnitude;
+			float dist = (target.transform.position - transform.position).magnitude;
 
 			if (dist <= fireDistance) {
 				Fire ();
