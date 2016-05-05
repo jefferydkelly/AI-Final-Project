@@ -9,7 +9,6 @@ public class SteeringVehicle : MonoBehaviour {
     public float wanderOffset = 5;
     public float wanderRadius = 2;
     public float fleeDistance = 100;
-	public float fireDistance = 25f;
     protected MovementStatus moveStatus = MovementStatus.Idle;
     public float mass = 1.0f;
     public float maxForce = 100;
@@ -225,6 +224,7 @@ public class SteeringVehicle : MonoBehaviour {
 	public void AlertSeek(GameObject go) {
 		target = go;
 		targetPos = Vector3.zero;
+		myRenderer.material.color = Color.red;
 		moveStatus = MovementStatus.FlockSeek;
 	}
 	public void Flee() {
@@ -249,6 +249,7 @@ public class SteeringVehicle : MonoBehaviour {
 		target = go;
 		targetPos = Vector3.zero;
 		moveStatus = MovementStatus.FlockFlee;
+		myRenderer.material.color = Color.blue;
 	}
 
     public void Idle() {

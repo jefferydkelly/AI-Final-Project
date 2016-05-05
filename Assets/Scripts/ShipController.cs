@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class ShipController : SteeringVehicle {
 	public GameObject laserBase;
 	private int hp = 20;
+	public float fireDistance = 25f;
 	protected bool canFire = true;
 	protected float cooldown = 1.0f;
 	protected float depth = 10;
@@ -20,7 +21,7 @@ public class ShipController : SteeringVehicle {
 		if (canFire) {
 			GameObject laser = GameObject.Instantiate (laserBase);
 			laser.transform.position = transform.position + transform.forward * (depth + laser.GetComponent<Bullet>().depth);
-			laser.transform.Rotate (transform.up, Mathf.Atan2 (Forward.x, Forward.z));
+			laser.transform.rotation = transform.rotation;
 			laser.GetComponent<Bullet>().fwd = Forward;
 			canFire = false;
 			laser.GetComponent<Bullet> ().myController = this;
@@ -37,10 +38,7 @@ public class ShipController : SteeringVehicle {
 		
 	public void TakeDamage(int dmg) {
 		hp -= dmg;
-		Debug.Log ("I've been hit.");
-		Debug.Log ("I'm taking " + dmg + " damage");
 		if (hp <= 0) {
-			Debug.Log ("I have been defeated");
 			Destroy (gameObject);
 		}
 	}

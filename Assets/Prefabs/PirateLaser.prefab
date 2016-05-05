@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 5
-  moveSpeed: 10
+  moveSpeed: 100
   lifeSpan: 5
   depth: 0
   fwd: {x: 0, y: 0, z: 0}

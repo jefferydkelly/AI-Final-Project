@@ -139,7 +139,6 @@ MonoBehaviour:
   wanderOffset: 5
   wanderRadius: 2
   fleeDistance: 100
-  fireDistance: 25
   mass: 1
   maxForce: 100
   maxSpeed: 30
@@ -152,7 +151,8 @@ MonoBehaviour:
   cohesion: 1
   alignmnet: 1
   laserBase: {fileID: 132936, guid: a38b0ab36264146be9f4eb0f8bdbaf7a, type: 2}
-  chaseMerchDistance: 100
+  fireDistance: 25
+  chaseMerchDistance: 150
   fleeCopsDistance: 100
 --- !u!1001 &100100000
 Prefab:
