@@ -178,7 +178,9 @@ public class SteeringVehicle : MonoBehaviour {
     }
 
 	public virtual Vector3 SV_Avoid_Obstacle(GameObject obstacle) {
-        if (Vector3.Distance(transform.position, obstacle.transform.position) < obstacleAvoidanceDistance)
+		Vector3 fwd = transform.forward.normalized;
+		float dot = Vector3.Dot (fwd, obstacle.transform.position - transform.position);
+        if (dot > 0 && dot < obstacleAvoidanceDistance)
         {
             return SV_Flee(obstacle);
         }
