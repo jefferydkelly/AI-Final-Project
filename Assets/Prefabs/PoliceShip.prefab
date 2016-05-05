@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 409580}
   - 64: {fileID: 6495200}
-  - 114: {fileID: 11466122}
+  - 114: {fileID: 11444266}
   m_Layer: 0
   m_Name: PoliceShip
   m_TagString: Cop
@@ -194,7 +194,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &11466122
+--- !u!114 &11444266
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -202,24 +202,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 128868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d401a90acbc77845a99e3f163624116, type: 3}
+  m_Script: {fileID: 11500000, guid: d4a4ae87036d62f4896587e8131ea945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   wanderOffset: 5
   wanderRadius: 2
   fleeDistance: 100
-  fireDistance: 25
   mass: 1
   maxForce: 100
   maxSpeed: 100
   wanderAngSpeed: 1.5707964
   slowingDistance: 10
+  obstacleAvoidanceDistance: 10
+  flockRadius: 300
   separation: 1
+  separationDistance: 50
   cohesion: 1
   alignmnet: 1
-  laserBase: {fileID: 0}
-  chaseMerchDistance: 50
-  fleeCopsDistance: 50
+  laserBase: {fileID: 171522, guid: cf4028e0b6e2e493ca4022304ecd8867, type: 2}
+  fireDistance: 25
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

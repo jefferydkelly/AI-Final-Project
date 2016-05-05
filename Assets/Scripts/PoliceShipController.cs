@@ -31,6 +31,7 @@ public class PoliceShipController : ShipController {
 		if (moveStatus == MovementStatus.Seek) {
 			steeringForce += SV_Seek (goTarget) + SV_Wander() * 0.5f;
 		} else if (moveStatus == MovementStatus.Wander) {
+			Debug.Log ("Wander");
 			steeringForce += SV_Wander ();
 		}
 
