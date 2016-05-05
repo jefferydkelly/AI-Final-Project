@@ -25,7 +25,6 @@ public class PirateShipController : ShipController {
 
 			if (dist <= fireDistance) {
 				Fire ();
-				Debug.Log ("Fire");
 			}
 		}
 	}
@@ -182,11 +181,13 @@ public class PirateShipController : ShipController {
 
 	protected override void AlertFlock (GameObject tar, bool seek)
 	{
-		foreach (SteeringVehicle sv in flock) {
-			if (seek) {
-				sv.AlertSeek (tar);
-			} else {
-				sv.AlertFlee (tar);
+		if (flock != null) {
+			foreach (SteeringVehicle sv in flock) {
+				if (seek) {
+					sv.AlertSeek (tar);
+				} else {
+					sv.AlertFlee (tar);
+				}
 			}
 		}
 	}
