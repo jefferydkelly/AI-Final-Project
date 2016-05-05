@@ -100,9 +100,10 @@ public class PirateShipController : ShipController {
 		Collider[] colls = Physics.OverlapSphere(transform.position, flockRadius);
 		foreach (Collider col in colls) {
 			if (col.CompareTag("Pirate") && col.gameObject != gameObject) {
-				if (!pFlock.Contains(col.GetComponent<PirateShipController>())) {
-					pFlock.Add (col.GetComponent<PirateShipController> ());
-					flock.Add (col.GetComponent<SteeringVehicle> ());
+				PirateShipController psc = col.GetComponent<PirateShipController> ();
+				if (psc != null && !pFlock.Contains(psc)) {
+					pFlock.Add (psc);
+					flock.Add (psc);
 				}
 			}
 		}

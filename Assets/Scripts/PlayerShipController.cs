@@ -3,10 +3,10 @@ using System.Collections;
 
 [RequireComponent(typeof(MeshCollider))]
 public class PlayerShipController : ShipController {
-    public float rotationSpeed = 10;
+	public float rotationSpeed = Mathf.PI;
     private float speed = 0;
     private float acceleration = 50;
-   
+	private float yRot = 0;
 	// Use this for initialization
 	void Start () {
 		maxSpeed = 100;
@@ -19,7 +19,8 @@ public class PlayerShipController : ShipController {
 	protected override void Update () {
 		lifeTime += Time.deltaTime;
         int rot = (Input.GetKey(KeyCode.D) ? 1 : 0) - (Input.GetKey(KeyCode.A) ? 1 : 0);
-        transform.Rotate(transform.up, rot * rotationSpeed * Time.deltaTime);
+		yRot += rot * rotationSpeed * Time.deltaTime;
+		transform.rotation = Quaternion.AngleAxis (yRot, Vector3.up);
 
         int fwd = (Input.GetKey(KeyCode.W) ? 1 : 0) - (Input.GetKey(KeyCode.S) ? 1 : 0);
         if (fwd != 0)
@@ -45,4 +46,17 @@ public class PlayerShipController : ShipController {
 			Fire ();
 		}
     }
+
+	public override void Fire() {
+		if (canFire) {
+			GameObject laser = GameObject.Instantiate (laserBase);
+			laser.transform.position = transform.position + transform.forward * (depth + laser.GetComponent<Bullet>().depth);
+			laser.transform.rotation = transform.rotation;
+			laser.GetComponent<Bullet>().fwd = transform.forward;
+			canFire = false;
+			laser.GetComponent<Bullet> ().myController = this;
+			shotsFired++;
+			Invoke ("ResetCooldown", cooldown);
+		}
+	}
 }

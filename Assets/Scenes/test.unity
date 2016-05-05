@@ -1027,7 +1027,7 @@ Prefab:
       objectReference: {fileID: 114466, guid: f996ceca6ecc943ea91566322968c3c4, type: 2}
     - target: {fileID: 11421526, guid: 1eef2f7600c0a114bb3588a87f709cd8, type: 2}
       propertyPath: rotationSpeed
-      value: 10
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6439138, guid: 1eef2f7600c0a114bb3588a87f709cd8, type: 2}
       propertyPath: m_Convex
