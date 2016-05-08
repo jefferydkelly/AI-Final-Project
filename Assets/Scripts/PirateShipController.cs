@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PirateShipController : ShipController {
 	public float chaseMerchDistance = 50;
 	public float fleeCopsDistance = 50;
+    public GameObject pirateCove;
 
 	private List<GameObject> possibleTargets;
 	// Use this for initialization
@@ -17,6 +18,23 @@ public class PirateShipController : ShipController {
 		enemyTags.Add ("Police");
 		enemyTags.Add ("Player");
     }
+
+    //when destroy, pass the fitness value that GA Need
+    void OnDestroy()
+    {
+        if(pirateCove.GetComponent<PirateSpawn>().UsingGA)
+        {
+            //calculate fitness and save to list for GA later
+            pirateCove.GetComponent<PirateSpawn>().fitness.Add((uint)TimeAlive + (uint)Accuracy*100);
+            List<uint> pirchrom = new List<uint>();
+            pirchrom.Add((uint)(aggressiveness * 100));
+            pirchrom.Add((uint)(fireDistance * 10));
+            //save agressiveness and fire distance to list for GA later
+            pirateCove.GetComponent<PirateSpawn>().piratechromosomes.Add(pirchrom);
+            pirateCove.GetComponent<PirateSpawn>().pirateshiplist.Remove(this.gameObject);
+        }
+    }
+
 	protected override void Update ()
 	{
 		base.Update ();

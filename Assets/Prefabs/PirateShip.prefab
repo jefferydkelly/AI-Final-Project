@@ -42,7 +42,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 184468}
-  m_LocalRotation: {x: .664348185, y: -.241886571, z: .24180299, w: .664577842}
+  m_LocalRotation: {x: 0.6643482, y: -0.24188657, z: 0.24180299, w: 0.66457784}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -82,7 +82,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
@@ -100,7 +100,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 184468}
-  m_Mesh: {fileID: 4300000, guid: e27b4448b11f5ef419b5f4fdba0bc5bb, type: 3}
+  m_Mesh: {fileID: 4300000, guid: b10dbf1081a91c54d948bfca5f9038ce, type: 3}
 --- !u!64 &6412722
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -143,7 +143,7 @@ MonoBehaviour:
   mass: 1
   maxForce: 100
   maxSpeed: 30
-  wanderAngSpeed: .392699093
+  wanderAngSpeed: 0.3926991
   slowingDistance: 10
   obstacleAvoidanceDistance: 10
   flockRadius: 300
@@ -154,6 +154,7 @@ MonoBehaviour:
   laserBase: {fileID: 132936, guid: a38b0ab36264146be9f4eb0f8bdbaf7a, type: 2}
   chaseMerchDistance: 100
   fleeCopsDistance: 100
+  pirateCove: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

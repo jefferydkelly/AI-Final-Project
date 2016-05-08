@@ -65,9 +65,14 @@ public class ShipController : SteeringVehicle {
 	}
 
 	public float Aggressiveness {
-		set {
+		set
+        {
 			aggressiveness = value;
 		}
+        get
+        {
+            return aggressiveness;
+        }
 	}
 
 	public bool IsEnemy(string tag) {
