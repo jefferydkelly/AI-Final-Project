@@ -45,7 +45,7 @@ public class PirateSpawn : MonoBehaviour {
 		}
 	}
 	
-	void Spawn() 
+	public void Spawn() 
 	{
 		//GameObject pirclone = (GameObject) Instantiate(pirate, transform.position, transform.rotation);
 		pirateshiplist [pircount] = (GameObject)Instantiate (pirate, transform.position, transform.rotation);
