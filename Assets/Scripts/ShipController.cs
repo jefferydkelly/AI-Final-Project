@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 public class ShipController : SteeringVehicle {
 	public GameObject laserBase;
 	private int hp = 20;
@@ -8,13 +9,15 @@ public class ShipController : SteeringVehicle {
 	protected bool canFire = true;
 	protected float cooldown = 1.0f;
 	protected float depth = 10;
-	protected int shotsFired = 0;
+	public int shotsFired = 0;
 	private int numberOfHits = 0;
 	protected float lifeTime = 0.0f;
 	protected float aggressiveness = 1.0f;
 	protected List<string> enemyTags = new List<string>();
 	public static float areaSize = -1;
+	string fileName = "bulletlog.txt";
 	public void Start() {
+		//LogBulletStat (true,3.47f,true,2);
 		lifeTime = 0.0f;
 		MeshRenderer mr = GetComponent<MeshRenderer> ();
 		if (mr == null) {
@@ -59,9 +62,16 @@ public class ShipController : SteeringVehicle {
 		numberOfHits++;
 	}
 
-	public void LogBulletStat()
+	public void LogBulletStat(bool outcome, float targetdist, bool obstacles, int remainingshots)
 	{
-		//todo
+		using (FileStream fs = new FileStream(fileName,FileMode.Append, FileAccess.Write))
+		using (StreamWriter sw = new StreamWriter(fs))
+		{
+			sw.Write ("{0}", outcome);
+			sw.Write (" {0}", targetdist);
+			sw.Write (" {0}", obstacles);
+			sw.WriteLine (" {0}", remainingshots);
+		}	
 	}
 
 	public float Accuracy {

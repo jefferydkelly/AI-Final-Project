@@ -27,7 +27,7 @@ public class SteeringVehicle : MonoBehaviour {
 	public float alignmnet = 1.0f;
 	protected float yAngle = 0;
 
-    protected GameObject target = null;
+	public GameObject target = null;
     protected Vector3 targetPos;// = null;
 
 	protected Renderer myRenderer;
