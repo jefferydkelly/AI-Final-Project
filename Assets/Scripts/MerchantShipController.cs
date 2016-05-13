@@ -30,7 +30,8 @@ public class MerchantShipController : ShipController {
 
         if (moveStatus != MovementStatus.Idle)
         {
-            steeringForce += AvoidObstacles();
+			steeringForce += AvoidObstacles () * obstacleAvoidanceWeight;
+			steeringForce += StayInArea ();
         }
 
         return steeringForce;

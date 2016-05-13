@@ -8,17 +8,16 @@ public class AsteroidSource : MonoBehaviour {
 	public int max_asteroids;
 	public float spawndelay;
 	private float timecount;
-
+	public float asteroidRadius = 1000;
 	// Use this for initialization
 	void Start () 
 	{
 		asteroidcount = 0;
 		timecount = 0;
-		float radius = 1000;
 		for (int i = 0; i < max_asteroids; i++) {
 			float ang = i * 360.0f / max_asteroids;
 			GameObject astoroid = (GameObject)Instantiate (asteroid1);
-			astoroid.transform.position = new Vector3 (Mathf.Sin (ang), 0, Mathf.Cos (ang)) * radius;
+			astoroid.transform.position = new Vector3 (Mathf.Sin (ang), 0, Mathf.Cos (ang)) * asteroidRadius;
 		}
 	}
 	

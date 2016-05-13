@@ -250,7 +250,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1 &738924491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,6 +2184,7 @@ GameObject:
   - 124: {fileID: 1340215894}
   - 81: {fileID: 1340215893}
   - 114: {fileID: 1340215898}
+  - 114: {fileID: 1340215899}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2269,40 +2270,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7ed712868ba4f5c98c5336dd848d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1710303867
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1710303868}
-  - 114: {fileID: 1710303869}
-  m_Layer: 0
-  m_Name: AsteroidBelt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1710303868
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1710303867}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1163}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
---- !u!114 &1710303869
+  roundTime: 300
+--- !u!114 &1340215899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1710303867}
+  m_GameObject: {fileID: 1340215892}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbdbd380d0968ce4db4663f9895cb8f4, type: 3}

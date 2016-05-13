@@ -50,7 +50,8 @@ public class PoliceShipController : ShipController {
 
         if (moveStatus != MovementStatus.Idle)
         {
-            steeringForce += AvoidObstacles();
+			steeringForce += AvoidObstacles() * obstacleAvoidanceWeight;
+			steeringForce += StayInArea ();
         }
 
         return steeringForce;

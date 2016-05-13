@@ -50,6 +50,7 @@ public class PirateShipController : ShipController {
         if (moveStatus != MovementStatus.Idle)
         {
 			steeringForce += AvoidObstacles() * obstacleAvoidanceWeight;
+			steeringForce += StayInArea ();
         }
 
         return steeringForce;
