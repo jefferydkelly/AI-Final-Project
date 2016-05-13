@@ -7,6 +7,7 @@ public class PoliceShipController : ShipController {
 	// Use this for initialization
 
 	void Start() {
+		base.Start ();
 		myRenderer = GetComponentInChildren<Renderer> ();
 		Wander ();
 		enemyTags.Add ("Player");

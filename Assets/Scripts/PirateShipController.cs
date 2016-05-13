@@ -10,6 +10,7 @@ public class PirateShipController : ShipController {
 	// Use this for initialization
 	void Start () 
 	{
+		base.Start ();
 		myRenderer = GetComponentInChildren<Renderer> ();
 		//Wander ();
 		Flock();

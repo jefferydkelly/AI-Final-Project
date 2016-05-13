@@ -2285,6 +2285,7 @@ MonoBehaviour:
   asteroid1: {fileID: 100000, guid: 79bce83937e43d042843a359e671ca99, type: 2}
   max_asteroids: 50
   spawndelay: 0.5
+  asteroidRadius: 1000
 --- !u!1 &1722046695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2403,7 +2404,7 @@ GameObject:
   - 114: {fileID: 1917562858}
   m_Layer: 0
   m_Name: PirateCove
-  m_TagString: Untagged
+  m_TagString: Cove
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
