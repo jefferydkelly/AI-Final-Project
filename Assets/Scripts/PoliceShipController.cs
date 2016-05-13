@@ -25,6 +25,21 @@ public class PoliceShipController : ShipController {
 		}
 	}
 
+	public override void Fire() {
+		if (canFire) {
+			if (shotsFired < 3) {
+				GameObject laser = GameObject.Instantiate (laserBase);
+				laser.transform.position = transform.position + transform.forward * (depth + laser.GetComponent<Bullet> ().depth);
+				laser.transform.rotation = transform.rotation;
+				laser.GetComponent<Bullet> ().fwd = Forward;
+				canFire = false;
+				laser.GetComponent<Bullet> ().myController = this;
+				shotsFired++;
+				Invoke ("ResetCooldown", cooldown);
+			}
+		}
+	}
+
     protected override Vector3 CalcSteeringForce() {
         Vector3 steeringForce = Vector3.zero;
 		if (moveStatus == MovementStatus.Seek) {
@@ -95,4 +110,5 @@ public class PoliceShipController : ShipController {
 
         return closestTarget;
 	}
+
 }

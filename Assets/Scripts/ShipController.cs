@@ -46,8 +46,13 @@ public class ShipController : SteeringVehicle {
 		canFire = true;
 	}
 
-	public void RegisterHit() {
+	public virtual void RegisterHit() {
 		numberOfHits++;
+	}
+
+	public void LogBulletStat()
+	{
+		//todo
 	}
 
 	public float Accuracy {
