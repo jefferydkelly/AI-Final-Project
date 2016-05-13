@@ -13,9 +13,14 @@ public class ShipController : SteeringVehicle {
 	protected float lifeTime = 0.0f;
 	protected float aggressiveness = 1.0f;
 	protected List<string> enemyTags = new List<string>();
+	public static float areaSize = -1;
 	void Start() {
 		lifeTime = 0.0f;
 		depth = GetComponent<MeshRenderer> ().bounds.size.z;
+
+		if (areaSize < 0) {
+			areaSize = Camera.main.GetComponent<AsteroidSource> ().asteroidRadius;
+		}
 	}
 	public virtual void Fire() {
 		if (canFire) {
@@ -70,5 +75,13 @@ public class ShipController : SteeringVehicle {
 
 	public bool IsEnemy(string tag) {
 		return enemyTags.Contains (tag);
+	}
+
+	protected Vector3 StayInArea() {
+		if (transform.position.magnitude >= areaSize) {
+			return SV_Seek (Vector3.zero);
+		}
+
+		return Vector3.zero;
 	}
 }
