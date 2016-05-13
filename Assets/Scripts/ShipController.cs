@@ -14,9 +14,13 @@ public class ShipController : SteeringVehicle {
 	protected float aggressiveness = 1.0f;
 	protected List<string> enemyTags = new List<string>();
 	public static float areaSize = -1;
-	void Start() {
+	public void Start() {
 		lifeTime = 0.0f;
-		depth = GetComponent<MeshRenderer> ().bounds.size.z;
+		MeshRenderer mr = GetComponent<MeshRenderer> ();
+		if (mr == null) {
+			mr = GetComponentInChildren<MeshRenderer> ();
+		}
+		depth = mr.bounds.size.z;
 
 		if (areaSize < 0) {
 			areaSize = Camera.main.GetComponent<AsteroidSource> ().asteroidRadius;

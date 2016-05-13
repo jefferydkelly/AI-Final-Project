@@ -138,9 +138,6 @@ public class PirateShipController : ShipController {
 	public bool areTargetsInRange(bool seek) {
 		possibleTargets = new List<GameObject> ();
 		Collider[] colls = Physics.OverlapSphere(transform.position, 50.0f);
-		List<GameObject> nearbyMerchants = new List<GameObject> ();
-		List<GameObject> nearbyPolice = new List<GameObject> ();
-
 		foreach (Collider c in colls) {
 			if (c.CompareTag ("Merchant") && seek) {
 				possibleTargets.Add (c.gameObject);

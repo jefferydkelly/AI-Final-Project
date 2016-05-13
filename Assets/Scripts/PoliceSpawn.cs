@@ -28,7 +28,7 @@ public class PoliceSpawn : MonoBehaviour {
 
 	void Spawn()
 	{
-		GameObject polclone = (GameObject) Instantiate(police, this.transform.position, Quaternion.identity);
+		GameObject.Instantiate (police, transform.position, Quaternion.identity);
 		polcount++;
 	}
 }

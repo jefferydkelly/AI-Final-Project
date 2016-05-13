@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 using System.IO;
 
@@ -8,7 +9,7 @@ public class PirateSpawn : MonoBehaviour {
 	float timecount = 0;
 	public uint pircount = 0;
 	public float spawndelay = 3.0f;
-	public GameObject[] pirateshiplist;
+	public List<GameObject> pirateshiplist;
 	public uint maxpir = 100;
 	//GA var
 	public GameObject GAobject;
@@ -19,12 +20,13 @@ public class PirateSpawn : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		pirateshiplist = new GameObject[maxpir];
+		pirateshiplist = new List<GameObject> ();
 		if (UsingGA) {
 			StreamReader inStreamGAdata = null;
 			try
 			{
 				inStreamGAdata = new StreamReader ("PirateShipGAdata.txt");
+				Debug.Log(inStreamGAdata.ReadLine());
 			}
 			catch
 			{
@@ -48,7 +50,7 @@ public class PirateSpawn : MonoBehaviour {
 	public void Spawn() 
 	{
 		//GameObject pirclone = (GameObject) Instantiate(pirate, transform.position, transform.rotation);
-		pirateshiplist [pircount] = (GameObject)Instantiate (pirate, transform.position, transform.rotation);
+		pirateshiplist.Add((GameObject)GameObject.Instantiate(pirate, transform.position, transform.rotation));
 		if (UsingGA) {
 			if(firstgeneration){
 				//pirateshiplist[pircount].GetComponent<PirateShipController> ().
