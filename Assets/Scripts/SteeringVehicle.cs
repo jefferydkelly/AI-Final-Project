@@ -82,8 +82,17 @@ public class SteeringVehicle : MonoBehaviour {
 		if (numNeighbors > 0) {
 			return al;
 		}
+		List<SteeringVehicle> toRemove = List<SteeringVehicle> ();
 		foreach (SteeringVehicle sv in flock) {
-			al += sv.Forward;
+			if (sv != null) {
+				al += sv.Forward;
+			} else {
+				toRemove.Add (sv);
+			}
+		}
+
+		foreach (SteeringVehicle s in toRemove) {
+			flock.Remove(s);
 		}
 			
 		return AlignTo (al / numNeighbors);
