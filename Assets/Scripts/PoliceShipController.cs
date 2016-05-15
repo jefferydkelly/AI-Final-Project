@@ -41,6 +41,15 @@ public class PoliceShipController : ShipController {
 		}
 	}
 
+	public bool DetectPotentialFiringObstacles()
+	{
+		Collider[] hitColliders = Physics.OverlapSphere (this.gameObject.transform.position, 100);
+		if (hitColliders.Length > 0)
+			return true;
+		else
+			return false;
+	}
+
     protected override Vector3 CalcSteeringForce() {
         Vector3 steeringForce = Vector3.zero;
 		if (moveStatus == MovementStatus.Seek) {
