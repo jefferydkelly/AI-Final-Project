@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +10,7 @@ using System.IO;
 public class BayesScript : MonoBehaviour {
 
 	public string fileName = "bulletlog.txt";
-	double sqrt2PI = Mathf.Sqrt (2.0 * Mathf.PI);
+	double sqrt2PI = Math.Sqrt (2.0f * Math.PI);
 
 	// Outcome (Boolean)
 	int[] outcomeCt = new int[2];				// Outcome (play T or F)
@@ -167,23 +168,23 @@ public class BayesScript : MonoBehaviour {
 					props [i, j] = (double)counts [i, j] / n [j];
 	}
 
-	double Mean (int sum, int n)
+	double Mean (float sum, int n)
 	{
 		return (double)sum / n;
 	}
 
-	double StdDev (int sumSq, int sum, int n)
+	double StdDev (float sumSq, float sum, int n)
 	{
-		return Mathf.Sqrt ((sumSq - (sum * sum) / (double)n) / (n - 1));
+		return Math.Sqrt ((sumSq - (sum * sum) / (double)n) / (n - 1));
 	}
 
 	// Calculates probability of x in a normal distribution of
 	// mean and stdDev.  This corrects a mistake in the pseudo-code,
 	// which used a power function instead of an exponential.
-	double GauProb (double mean, double stdDev, int x)
+	double GauProb (double mean, double stdDev, float x)
 	{
 		double xMinusMean = x - mean;
 		return (1.0d / (stdDev * sqrt2PI)) *
-			Mathf.Exp (-1.0d * xMinusMean * xMinusMean / (2.0d * stdDev * stdDev));
+			Math.Exp (-1.0d * xMinusMean * xMinusMean / (2.0d * stdDev * stdDev));
 	}
 }
