@@ -5,23 +5,42 @@ using System.Collections.Generic;
 public class PirateShipController : ShipController {
 	public float chaseMerchDistance = 50;
 	public float fleeCopsDistance = 50;
+    private PirateSpawn spawner;
 
 	private List<GameObject> possibleTargets;
 	// Use this for initialization
 	void Start () 
 	{
-		base.Start ();
+        InitializeShip();
 		myRenderer = GetComponentInChildren<Renderer> ();
 		//Wander ();
 		Flock();
 		enemyTags.Add ("Merchant");
 		enemyTags.Add ("Police");
 		enemyTags.Add ("Player");
+     
+        spawner = GameObject.FindGameObjectWithTag("Cove").GetComponent<PirateSpawn>();
     }
+
+    //when destroy, pass the fitness value that GA Need
+    void OnDestroy()
+    {
+        if(spawner != null && spawner.UsingGA)
+        {
+            //calculate fitness and save to list for GA later
+            spawner.fitness.Add((uint)TimeAlive + (uint)Accuracy*100);
+            List<uint> pirchrom = new List<uint>();
+            pirchrom.Add((uint)(aggressiveness * 100));
+            pirchrom.Add((uint)(fireDistance * 10));
+            //save agressiveness and fire distance to list for GA later
+            spawner.piratechromosomes.Add(pirchrom);
+            spawner.pirateshiplist.Remove(this.gameObject);
+        }
+    }
+
 	protected override void Update ()
 	{
 		base.Update ();
-		Debug.Log (moveStatus);
 		if ((moveStatus == MovementStatus.Seek || (moveStatus == MovementStatus.FlockSeek))) {
 			float dist = (target.transform.position - transform.position).magnitude;
 

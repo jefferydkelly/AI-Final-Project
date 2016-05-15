@@ -163,7 +163,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &48627708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +341,7 @@ Transform:
   m_LocalScale: {x: 1000, y: 1000, z: 1000}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &1187181736
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +402,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &1228332664
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +480,7 @@ Transform:
   m_LocalScale: {x: 120, y: 120, z: 120}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!114 &1228332669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,7 +606,7 @@ Transform:
   m_LocalScale: {x: 300, y: 300, z: 300}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!114 &1315989341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2306,7 +2306,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &1340215898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2318,7 +2318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7ed712868ba4f5c98c5336dd848d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundTime: 300
+  roundTime: 30
 --- !u!114 &1340215899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2331,7 +2331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroid1: {fileID: 100000, guid: 79bce83937e43d042843a359e671ca99, type: 2}
-  max_asteroids: 50
+  max_asteroids: 25
   asteroidRadius: 1000
 --- !u!1 &1722046695
 GameObject:
@@ -2410,7 +2410,7 @@ Transform:
   m_LocalScale: {x: 80, y: 80, z: 80}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!114 &1722046700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2465,6 +2465,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1917562859}
   - 114: {fileID: 1917562858}
+  - 114: {fileID: 1917562860}
   m_Layer: 0
   m_Name: PirateCove
   m_TagString: Cove
@@ -2486,10 +2487,10 @@ MonoBehaviour:
   pirate: {fileID: 163886, guid: 1dd00d1e83ad47042819d2555312452a, type: 2}
   pircount: 0
   spawndelay: 3
+  maxpir: 50
   pirateshiplist: []
-  maxpir: 100
-  GAobject: {fileID: 165494, guid: 1b825b1e1b07d064ea8ca92c05e127e5, type: 2}
-  UsingGA: 0
+  UsingGA: 1
+  fitness: 
 --- !u!4 &1917562859
 Transform:
   m_ObjectHideFlags: 0
@@ -2497,11 +2498,25 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1917562857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 1001}
+  m_LocalPosition: {x: 0, y: -0, z: 900}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
+--- !u!114 &1917562860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1917562857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e2bbdd65c62be4a83d2d8dd2bc7381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nBits: 0
+  crossoverProb: 0
+  mutateProb: 0
 --- !u!1 &2059319486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2579,7 +2594,7 @@ Transform:
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!114 &2059319491
 MonoBehaviour:
   m_ObjectHideFlags: 0

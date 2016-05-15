@@ -16,18 +16,27 @@ public class ShipController : SteeringVehicle {
 	protected List<string> enemyTags = new List<string>();
 	public static float areaSize = -1;
 	string fileName = "bulletlog.txt";
-	public void Start() {
-		//LogBulletStat (true,3.47f,true,2);
-		lifeTime = 0.0f;
-		MeshRenderer mr = GetComponent<MeshRenderer> ();
-		if (mr == null) {
-			mr = GetComponentInChildren<MeshRenderer> ();
-		}
-		depth = mr.bounds.size.z;
+	protected bool invulnerable = false;
+    protected void InitializeShip()
+    {
+        lifeTime = 0.0f;
+        MeshRenderer mr = GetComponent<MeshRenderer>();
+        if (mr == null)
+        {
+            mr = GetComponentInChildren<MeshRenderer>();
+        }
+        depth = mr.bounds.size.z;
 
-		if (areaSize < 0) {
-			areaSize = Camera.main.GetComponent<AsteroidSource> ().asteroidRadius;
-		}
+        if (areaSize < 0)
+        {
+            areaSize = Camera.main.GetComponent<AsteroidSource>().asteroidRadius;
+        }
+		invulnerable = true;
+		Invoke ("LostInvulnerability", 1.0f);
+    }
+
+	public void LoseInvulnerability() {
+		invulnerable = false;
 	}
 	public virtual void Fire() {
 		if (canFire) {
@@ -87,9 +96,14 @@ public class ShipController : SteeringVehicle {
 	}
 
 	public float Aggressiveness {
-		set {
+		set
+        {
 			aggressiveness = value;
 		}
+        get
+        {
+            return aggressiveness;
+        }
 	}
 
 	public bool IsEnemy(string tag) {
@@ -97,15 +111,15 @@ public class ShipController : SteeringVehicle {
 	}
 
 	protected Vector3 StayInArea() {
-		if (transform.position.magnitude >= areaSize) {
-			return SV_Seek (Vector3.zero);
+		if (transform.position.magnitude >= areaSize - 100) {
+			return SV_Seek (Vector3.zero) * 100;
 		}
 
 		return Vector3.zero;
 	}
 
 	void OnTriggerEnter(Collider col) {
-		if (col.CompareTag ("Obstacle") || col.CompareTag ("Planet")) {
+		if (!invulnerable && (col.CompareTag ("Obstacle") || col.CompareTag ("Planet"))) {
 			Destroy (gameObject);
 		}
 	}

@@ -9,7 +9,7 @@ public class MerchantShipController : ShipController {
 	// Use this for initialization
 	void Start () 
 	{
-		base.Start ();
+        InitializeShip();
 		myRenderer = GetComponentInChildren<Renderer> ();
 		Wander ();
 		enemyTags.Add ("Merchant");
@@ -118,7 +118,7 @@ public class MerchantShipController : ShipController {
 	}
 
 	void OnTriggerEnter(Collider col) {
-		if (col.CompareTag ("Obstacle") || (col.CompareTag ("Planet") && col.gameObject != Destination && col.gameObject != HomePlanet)) {
+		if (!invulnerable && (col.CompareTag ("Obstacle") || (col.CompareTag ("Planet") && col.gameObject != Destination && col.gameObject != HomePlanet))) {
 			Destroy (gameObject);
 		}
 	}
