@@ -6,6 +6,7 @@ public class MerchantShipController : ShipController {
 	private List<GameObject> possibleTargets;
 	private GameObject homePlanet = null;
 	private GameObject destPlanet= null;
+	private bool reachedDestination = false;
 	// Use this for initialization
 	void Start () 
 	{
@@ -118,7 +119,8 @@ public class MerchantShipController : ShipController {
 	}
 
 	void OnTriggerEnter(Collider col) {
-		if (!invulnerable && (col.CompareTag ("Obstacle") || (col.CompareTag ("Planet") && col.gameObject != Destination && col.gameObject != HomePlanet))) {
+		if (!invulnerable && (col.CompareTag ("Obstacle") || (col.CompareTag ("Planet") && col.gameObject != HomePlanet))) {
+			reachedDestination = (col.gameObject == Destination);
 			Destroy (gameObject);
 		}
 	}
