@@ -82,7 +82,7 @@ public class SteeringVehicle : MonoBehaviour {
 		if (numNeighbors > 0) {
 			return al;
 		}
-		List<SteeringVehicle> toRemove = List<SteeringVehicle> ();
+		List<SteeringVehicle> toRemove = new List<SteeringVehicle> ();
 		foreach (SteeringVehicle sv in flock) {
 			if (sv != null) {
 				al += sv.Forward;
