@@ -19,7 +19,7 @@ public class PoliceShipController : ShipController {
 
 		if (moveStatus == MovementStatus.Seek) {
 			float dist = (target.transform.position - transform.position).magnitude;
-
+			//bayesian classifier goes here
 			if (dist <= fireDistance) {
 				Fire ();
 			}
