@@ -32,7 +32,6 @@ public class CameraController : MonoBehaviour {
 	}
 
 	void EndRound() {
-		//pSpawn.roundEnd();
 		//Go To Round Over Screen - Ask Continue or Quit.
 		SceneManager.LoadScene("RoundOver");
 	}
