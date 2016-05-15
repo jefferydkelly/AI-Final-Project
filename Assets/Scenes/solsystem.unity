@@ -100,6 +100,7 @@ GameObject:
   - 114: {fileID: 48627709}
   - 114: {fileID: 48627710}
   - 54: {fileID: 48627711}
+  - 114: {fileID: 48627712}
   m_Layer: 0
   m_Name: Planet A
   m_TagString: Planet
@@ -194,7 +195,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   police: {fileID: 128868, guid: e315e830547a2954fb2d0a09d8a99dee, type: 2}
-  polcount: 0
   max_police: 3
   spawndelay: 3
 --- !u!114 &48627710
@@ -224,6 +224,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &48627712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 48627703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894e89677fb62fc44af0860997f2f351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: bulletlog.txt
 --- !u!1 &399405215
 GameObject:
   m_ObjectHideFlags: 0
@@ -2318,7 +2330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7ed712868ba4f5c98c5336dd848d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundTime: 30
+  roundTime: 300
 --- !u!114 &1340215899
 MonoBehaviour:
   m_ObjectHideFlags: 0

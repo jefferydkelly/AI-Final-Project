@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class PoliceShipController : ShipController {
 	private List<GameObject> possibleTargets;
+	public PoliceSpawn spawner;
 	// Use this for initialization
 
 	void Start() {
@@ -18,11 +19,13 @@ public class PoliceShipController : ShipController {
 		base.Update ();
 
 		if (moveStatus == MovementStatus.Seek) {
+			Debug.Log ("Starting firing decider...");
 			float dist = (target.transform.position - transform.position).magnitude;
-			//bayesian classifier goes here
-			if (dist <= fireDistance) {
+			bool obs = DetectPotentialFiringObstacles ();
+			bool shouldfire = GameObject.Find("Planet A").GetComponent<BayesScript> ().Decide (dist, obs, 3 - shotsFired);
+			Debug.Log ("Should I fire? "+shouldfire+"!");
+			if (shouldfire)
 				Fire ();
-			}
 		}
 	}
 
@@ -74,6 +77,7 @@ public class PoliceShipController : ShipController {
                 GameObject tar = FindTarget();
                 if (tar != null)
 				{
+					Debug.Log ("I should be seeking");
                     Seek(tar);
                 }
 			}
@@ -120,6 +124,12 @@ public class PoliceShipController : ShipController {
 		}
 
         return closestTarget;
+	}
+
+	void OnDestroy() {
+		if (spawner != null) {
+			spawner.NumberOfPolice -= 1;
+		}
 	}
 
 }

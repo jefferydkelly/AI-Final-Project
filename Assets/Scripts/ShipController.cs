@@ -32,7 +32,7 @@ public class ShipController : SteeringVehicle {
             areaSize = Camera.main.GetComponent<AsteroidSource>().asteroidRadius;
         }
 		invulnerable = true;
-		Invoke ("LostInvulnerability", 1.0f);
+		Invoke ("LoseInvulnerability", 1.0f);
     }
 
 	public void LoseInvulnerability() {

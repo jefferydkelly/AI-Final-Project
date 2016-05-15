@@ -213,15 +213,17 @@ MonoBehaviour:
   maxSpeed: 100
   wanderAngSpeed: 1.5707964
   slowingDistance: 10
-  obstacleAvoidanceDistance: 10
-  obstacleAvoidanceWeight: 5
+  obstacleAvoidanceDistance: 100
+  obstacleAvoidanceWeight: 100
   flockRadius: 300
   separation: 1
   separationDistance: 50
   cohesion: 1
   alignmnet: 1
+  target: {fileID: 0}
   laserBase: {fileID: 171522, guid: cf4028e0b6e2e493ca4022304ecd8867, type: 2}
   fireDistance: 25
+  shotsFired: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

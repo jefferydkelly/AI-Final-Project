@@ -43,8 +43,10 @@ public class BayesScript : MonoBehaviour {
 	List<Observation> obsTab = new List<Observation> ();
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		ReadObsTable ();
+		BuildStats ();
 	}
 	
 	// Update is called once per frame
@@ -75,7 +77,7 @@ public class BayesScript : MonoBehaviour {
 		}
 	}
 
-	void FillObsTable()
+	void ReadObsTable()
 	{
 		using (StreamReader rdr = new StreamReader (fileName)) 
 		{

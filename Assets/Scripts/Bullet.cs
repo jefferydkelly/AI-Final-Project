@@ -18,11 +18,14 @@ public class Bullet : MonoBehaviour {
 	}
 
 	void Remove() {
-		Destroy (gameObject);
 		ShipController sc = myController.GetComponent<ShipController> ();
 		SteeringVehicle sv = myController.GetComponent<SteeringVehicle> ();
-		bool obs = sc.GetComponent<PoliceShipController> ().DetectPotentialFiringObstacles ();
-		sc.LogBulletStat (false, Vector3.Distance (sc.gameObject.transform.position, sv.target.transform.position), obs, 3 - sc.shotsFired);
+		if (sc.gameObject.CompareTag ("Cop")) 
+		{
+			bool obs = sc.GetComponent<PoliceShipController> ().DetectPotentialFiringObstacles ();
+			sc.LogBulletStat (false, Vector3.Distance (sc.gameObject.transform.position, sv.target.transform.position), obs, 3 - sc.shotsFired);
+		}
+		Destroy (gameObject);
 	}
 
 	void OnTriggerEnter(Collider col) {
@@ -35,8 +38,11 @@ public class Bullet : MonoBehaviour {
 		if (ec != null) {
 			if (sc.IsEnemy (col.tag)) {
 				Debug.Log ("Hit " + col.tag);
-				bool obs = sc.GetComponent<PoliceShipController> ().DetectPotentialFiringObstacles ();
-				sc.LogBulletStat (true, Vector3.Distance (sc.gameObject.transform.position, ec.gameObject.transform.position), obs, 3 - sc.shotsFired);
+				if (sc.gameObject.CompareTag ("Cop")) 
+				{
+					bool obs = sc.GetComponent<PoliceShipController> ().DetectPotentialFiringObstacles ();
+					sc.LogBulletStat (true, Vector3.Distance (sc.gameObject.transform.position, ec.gameObject.transform.position), obs, 3 - sc.shotsFired);
+				}
 				ec.TakeDamage (dmg);
 				myController.RegisterHit ();
 				Destroy (gameObject);
