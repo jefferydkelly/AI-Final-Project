@@ -141,17 +141,20 @@ MonoBehaviour:
   fleeDistance: 100
   mass: 1
   maxForce: 100
-  maxSpeed: 30
+  maxSpeed: 100
   wanderAngSpeed: 0.3926991
   slowingDistance: 10
   obstacleAvoidanceDistance: 10
+  obstacleAvoidanceWeight: 5
   flockRadius: 300
   separation: 1
   separationDistance: 50
   cohesion: 1
   alignmnet: 1
+  target: {fileID: 0}
   laserBase: {fileID: 132936, guid: a38b0ab36264146be9f4eb0f8bdbaf7a, type: 2}
   fireDistance: 25
+  shotsFired: 0
   chaseMerchDistance: 150
   fleeCopsDistance: 100
 --- !u!1001 &100100000

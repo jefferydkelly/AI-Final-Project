@@ -106,7 +106,6 @@ public class ShipController : SteeringVehicle {
 
 	void OnTriggerEnter(Collider col) {
 		if (col.CompareTag ("Obstacle") || col.CompareTag ("Planet")) {
-			Debug.Log ("Crash");
 			Destroy (gameObject);
 		}
 	}

@@ -120,8 +120,6 @@ public class MerchantShipController : ShipController {
 	void OnTriggerEnter(Collider col) {
 		if (col.CompareTag ("Obstacle") || (col.CompareTag ("Planet") && col.gameObject != Destination && col.gameObject != HomePlanet)) {
 			Destroy (gameObject);
-		} else {
-			Debug.Log ("I'm a merchant and I'm fine.");
 		}
 	}
 }
