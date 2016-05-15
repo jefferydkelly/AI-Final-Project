@@ -11,7 +11,7 @@ public class MerchantSpawn : MonoBehaviour {
 	private GameObject origin;
 	float timecount = 0;
 	public float merchcount = 0;
-	public float spawndelay = 3.0f;
+	public float spawndelay = 10.0f;
 	public float max_merchants = 100;
 	// Use this for initialization
 	void Start () 

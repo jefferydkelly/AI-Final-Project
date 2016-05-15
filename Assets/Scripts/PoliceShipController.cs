@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PoliceShipController : ShipController {
-    private GameObject goTarget;
 	private List<GameObject> possibleTargets;
 	// Use this for initialization
 
@@ -18,7 +17,7 @@ public class PoliceShipController : ShipController {
 		base.Update ();
 
 		if (moveStatus == MovementStatus.Seek) {
-			float dist = (goTarget.transform.position - transform.position).magnitude;
+			float dist = (target.transform.position - transform.position).magnitude;
 
 			if (dist <= fireDistance) {
 				Fire ();
@@ -29,7 +28,7 @@ public class PoliceShipController : ShipController {
     protected override Vector3 CalcSteeringForce() {
         Vector3 steeringForce = Vector3.zero;
 		if (moveStatus == MovementStatus.Seek) {
-			steeringForce += SV_Seek (goTarget) + SV_Wander() * 0.5f;
+			steeringForce += SV_Seek (target) + SV_Wander() * 0.5f;
 		} else if (moveStatus == MovementStatus.Wander) {
 			steeringForce += SV_Wander ();
 		}
@@ -48,7 +47,7 @@ public class PoliceShipController : ShipController {
 			if (areTargetsInRange ()) {
                 GameObject tar = FindTarget();
                 if (tar != null)
-                {
+				{
                     Seek(tar);
                 }
 			}

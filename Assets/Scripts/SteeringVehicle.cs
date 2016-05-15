@@ -9,7 +9,6 @@ public class SteeringVehicle : MonoBehaviour {
     public float wanderOffset = 5;
     public float wanderRadius = 2;
     public float fleeDistance = 100;
-	public float fireDistance = 25f;
     protected MovementStatus moveStatus = MovementStatus.Idle;
     public float mass = 1.0f;
     public float maxForce = 100;
@@ -18,7 +17,8 @@ public class SteeringVehicle : MonoBehaviour {
     private float wanderAng = Mathf.PI;
     public float wanderAngSpeed = Mathf.PI / 2;
     public float slowingDistance = 10;
-    public float obstacleAvoidanceDistance = 10;
+    public float obstacleAvoidanceDistance = 200;
+	public float obstacleAvoidanceWeight = 5.0f;
 	protected List<SteeringVehicle> flock;
 	public float flockRadius = 300;
 	public float separation = 1.0f;
@@ -179,10 +179,15 @@ public class SteeringVehicle : MonoBehaviour {
     }
 
 	public virtual Vector3 SV_Avoid_Obstacle(GameObject obstacle) {
-        if (Vector3.Distance(transform.position, obstacle.transform.position) < obstacleAvoidanceDistance)
-        {
-            return SV_Flee(obstacle);
-        }
+		ObstacleController oc = obstacle.GetComponent<ObstacleController> ();
+		if (oc != null) {
+			Vector3 fwd = transform.forward.normalized;
+			Vector3 dif = obstacle.transform.position - transform.position;
+			float dot = Vector3.Dot (fwd, dif);
+			if (dot > 0 && dot < (obstacleAvoidanceDistance + oc.radius)) {
+				return new Vector3 (-dif.z, 0, dif.x) * maxSpeed - velocity;
+			}
+		}
         return Vector3.zero;
 	}
 
@@ -224,7 +229,8 @@ public class SteeringVehicle : MonoBehaviour {
 
 	public void AlertSeek(GameObject go) {
 		target = go;
-		targetPos = null;
+		targetPos = Vector3.zero;
+		myRenderer.material.color = Color.red;
 		moveStatus = MovementStatus.FlockSeek;
 	}
 	public void Flee() {
@@ -247,8 +253,9 @@ public class SteeringVehicle : MonoBehaviour {
 
 	public void AlertFlee(GameObject go) {
 		target = go;
-		targetPos = null;
+		targetPos = Vector3.zero;
 		moveStatus = MovementStatus.FlockFlee;
+		myRenderer.material.color = Color.blue;
 	}
 
     public void Idle() {
