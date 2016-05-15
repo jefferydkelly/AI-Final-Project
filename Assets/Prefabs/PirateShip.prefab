@@ -139,22 +139,24 @@ MonoBehaviour:
   wanderOffset: 5
   wanderRadius: 2
   fleeDistance: 100
-  fireDistance: 25
   mass: 1
   maxForce: 100
   maxSpeed: 30
   wanderAngSpeed: 0.3926991
-  slowingDistance: 10
-  obstacleAvoidanceDistance: 10
+  slowingDistance: 100
+  obstacleAvoidanceDistance: 100
+  obstacleAvoidanceWeight: 5
   flockRadius: 300
-  separation: 1
+  separation: 0.5
   separationDistance: 50
-  cohesion: 1
-  alignmnet: 1
+  cohesion: 0.5
+  alignmnet: 0.5
+  target: {fileID: 0}
   laserBase: {fileID: 132936, guid: a38b0ab36264146be9f4eb0f8bdbaf7a, type: 2}
+  fireDistance: 25
+  shotsFired: 0
   chaseMerchDistance: 100
   fleeCopsDistance: 100
-  pirateCove: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

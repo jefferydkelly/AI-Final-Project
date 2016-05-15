@@ -7,9 +7,9 @@ public class CameraController : MonoBehaviour {
 	public float roundTime = 300;
 	private PirateSpawn pSpawn;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		player = GameObject.FindGameObjectWithTag ("Player");
-		StartRound ();
+        StartRound ();
 	}
 	
 	// Update is called once per frame
@@ -27,12 +27,11 @@ public class CameraController : MonoBehaviour {
 
 	void StartRound() {
 		pSpawn = GameObject.FindGameObjectWithTag ("Cove").GetComponent<PirateSpawn> ();
-		pSpawn.Spawn ();
 		Invoke ("EndRound", roundTime);
 	}
 
 	void EndRound() {
-		//pSpawn.roundEnd();
+        pSpawn.OnRoundEnd();
 		//Go To Round Over Screen - Ask Continue or Quit.
 		SceneManager.LoadScene("RoundOver");
 	}

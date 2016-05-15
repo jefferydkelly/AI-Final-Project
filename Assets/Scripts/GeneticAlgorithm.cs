@@ -67,8 +67,10 @@ public class GeneticAlgorithm : MonoBehaviour {
         {
             for (int j = 0; j < newPopChromList[0].Count; j++)
             {
-                outStream.WriteLine(newPopChromList[i]);
+                outStream.Write(newPopChromList[i][j]);
+                outStream.Write(" ");
             }
+            outStream.WriteLine();
         }
 
     }

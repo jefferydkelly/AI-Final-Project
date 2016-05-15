@@ -12,26 +12,27 @@ public class PirateSpawn : MonoBehaviour {
     public List<GameObject> pirateshiplist;
 
     //GA var
-    public GameObject GAobject;
 	public bool UsingGA = false;
-    public string GAdataPath;
+    private string GAdataPath = "PirateShipGAdata.txt";
 	bool firstgeneration = false;
     public List<List<uint>> piratechromosomes = null;
     public List<uint> fitness = null;
     StreamReader inStreamGAdata = null;
     char[] delim = { ' ' };
+
+    private GeneticAlgorithm GAclass;
     // Use this for initialization
-    void Start () 
-	{
+    void Awake () { 
         pirateshiplist = new List<GameObject>();
+        GAclass = GetComponent<GeneticAlgorithm>();
         //if we are using GA, try to open the .txt file which hold the chrom data
         if (UsingGA) {
-            GAdataPath = "PirateShipGAdata.txt";
             if(!firstgeneration)
             {
                 try
 			    {
 				    inStreamGAdata = new StreamReader (GAdataPath);
+                    Debug.Log(inStreamGAdata == null);
 			    }
 			    catch
 			    {
@@ -42,48 +43,50 @@ public class PirateSpawn : MonoBehaviour {
 
             piratechromosomes = new List<List<uint>>();
             fitness = new List<uint>();
+            Spawn();
 		}
 	}
 
 	// Update is called once per frame
 	void Update () 
 	{
-		timecount += Time.deltaTime;
-		if ((timecount > spawndelay)&&(pircount<maxpir)) 
-		{
-			Spawn();
-			timecount = 0;
-			pircount++;
-		}
 	}
 	
-	void Spawn() 
+	public void Spawn() 
 	{
         //GameObject pirclone = (GameObject) Instantiate(pirate, transform.position, transform.rotation);
-        
+
         //generate a new pirateship here
-        pirateshiplist.Add((GameObject)Instantiate (pirate, transform.position, transform.rotation));
-        
+        GameObject newPirate = (GameObject)Instantiate(pirate, transform.position, transform.rotation);
+        PirateShipController newPSC = newPirate.GetComponent<PirateShipController>();
+        pirateshiplist.Add(newPirate);
+        pircount++;
         //if we are using genetic algorithm then we need to calculate the 
         //agressiveness and fire distance of the pirateship
         if (UsingGA)
         {
             //if this is the first generation of pirateship, we randomly generate their data
-			if(firstgeneration)
+            if (firstgeneration)
             {
                 //a random float agreesiveness between 0 to 5
-                pirateshiplist[pircount].GetComponent<PirateShipController>().Aggressiveness = UnityEngine.Random.Range(0f, 5.0f);
-                pirateshiplist[pircount].GetComponent<PirateShipController>().fireDistance = UnityEngine.Random.Range(15f, 50f);
+                newPSC.Aggressiveness = UnityEngine.Random.Range(0f, 5.0f);
+                newPSC.fireDistance = UnityEngine.Random.Range(15f, 50f);
             }
             else
             {
                 //read data from txt file;
+                
                 string line = inStreamGAdata.ReadLine();
                 string[] tokens = line.Split(delim);
                 //set pirateship's data
-                pirateshiplist[pircount].GetComponent<PirateShipController>().Aggressiveness = ((float)(uint.Parse(tokens[0])))/100;
-                pirateshiplist[pircount].GetComponent<PirateShipController>().fireDistance = ((float)(uint.Parse(tokens[1]))) / 10;
+                newPSC.Aggressiveness = ((float)(uint.Parse(tokens[0]))) / 100;
+                newPSC.fireDistance = ((float)(uint.Parse(tokens[1]))) / 10;
+                
             }
+        }
+        if ((pircount < maxpir))
+        {
+            Invoke("Spawn", spawndelay);
         }
         //pirclone.transform.Rotate (Vector3.up, Random.Range (0, 359));
     }
@@ -93,7 +96,8 @@ public class PirateSpawn : MonoBehaviour {
     {
         if(UsingGA)
         {
-            inStreamGAdata.Close();
+            if(!firstgeneration)
+                inStreamGAdata.Close();
             //take chrom and fitness from generation for GA
             for(int i = 0; i < pirateshiplist.Count; i++)
             {
@@ -106,6 +110,7 @@ public class PirateSpawn : MonoBehaviour {
                 piratechromosomes.Add(pirchrom);
             }
 
+            GAclass.startGA(piratechromosomes, fitness, GAdataPath);
 
         }
     }

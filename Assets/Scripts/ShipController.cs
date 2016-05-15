@@ -16,19 +16,22 @@ public class ShipController : SteeringVehicle {
 	protected List<string> enemyTags = new List<string>();
 	public static float areaSize = -1;
 	string fileName = "bulletlog.txt";
-	public void Start() {
-		//LogBulletStat (true,3.47f,true,2);
-		lifeTime = 0.0f;
-		MeshRenderer mr = GetComponent<MeshRenderer> ();
-		if (mr == null) {
-			mr = GetComponentInChildren<MeshRenderer> ();
-		}
-		depth = mr.bounds.size.z;
 
-		if (areaSize < 0) {
-			areaSize = Camera.main.GetComponent<AsteroidSource> ().asteroidRadius;
-		}
-	}
+    protected void InitializeShip()
+    {
+        lifeTime = 0.0f;
+        MeshRenderer mr = GetComponent<MeshRenderer>();
+        if (mr == null)
+        {
+            mr = GetComponentInChildren<MeshRenderer>();
+        }
+        depth = mr.bounds.size.z;
+
+        if (areaSize < 0)
+        {
+            areaSize = Camera.main.GetComponent<AsteroidSource>().asteroidRadius;
+        }
+    }
 	public virtual void Fire() {
 		if (canFire) {
 			GameObject laser = GameObject.Instantiate (laserBase);
@@ -102,8 +105,8 @@ public class ShipController : SteeringVehicle {
 	}
 
 	protected Vector3 StayInArea() {
-		if (transform.position.magnitude >= areaSize) {
-			return SV_Seek (Vector3.zero);
+		if (transform.position.magnitude >= areaSize - 100) {
+			return SV_Seek (Vector3.zero) * 100;
 		}
 
 		return Vector3.zero;
@@ -111,7 +114,7 @@ public class ShipController : SteeringVehicle {
 
 	void OnTriggerEnter(Collider col) {
 		if (col.CompareTag ("Obstacle") || col.CompareTag ("Planet")) {
-			Debug.Log ("Crash");
+			Debug.Log ("Crashed " + tag + ": Hit " + col.tag);
 			Destroy (gameObject);
 		}
 	}
