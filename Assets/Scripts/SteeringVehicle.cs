@@ -27,7 +27,7 @@ public class SteeringVehicle : MonoBehaviour {
 	public float alignmnet = 1.0f;
 	protected float yAngle = 0;
 
-    protected GameObject target = null;
+	public GameObject target = null;
     protected Vector3 targetPos;// = null;
 
 	protected Renderer myRenderer;
@@ -185,7 +185,9 @@ public class SteeringVehicle : MonoBehaviour {
 			Vector3 dif = obstacle.transform.position - transform.position;
 			float dot = Vector3.Dot (fwd, dif);
 			if (dot > 0 && dot < (obstacleAvoidanceDistance + oc.radius)) {
-				return new Vector3 (-dif.z, 0, dif.x) * maxSpeed - velocity;
+				Vector3 fd = fwd * (1 + dif.magnitude) - obstacle.transform.position;
+
+				return  fd.normalized * maxSpeed - velocity;
 			}
 		}
         return Vector3.zero;

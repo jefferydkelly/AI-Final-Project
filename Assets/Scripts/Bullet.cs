@@ -19,6 +19,9 @@ public class Bullet : MonoBehaviour {
 
 	void Remove() {
 		Destroy (gameObject);
+		ShipController sc = myController.GetComponent<ShipController> ();
+		SteeringVehicle sv = myController.GetComponent<SteeringVehicle> ();
+		sc.LogBulletStat (false, Vector3.Distance (sc.gameObject.transform.position, sv.target.transform.position), false/*todo:make fn to check obstacles*/, 3 - sc.shotsFired);
 	}
 
 	void OnTriggerEnter(Collider col) {
@@ -31,6 +34,7 @@ public class Bullet : MonoBehaviour {
 		if (ec != null) {
 			if (sc.IsEnemy (col.tag)) {
 				Debug.Log ("Hit " + col.tag);
+				sc.LogBulletStat (true, Vector3.Distance (sc.gameObject.transform.position, ec.gameObject.transform.position), false/*todo:make fn to check obstacles*/, 3 - sc.shotsFired);
 				ec.TakeDamage (dmg);
 				myController.RegisterHit ();
 				Destroy (gameObject);

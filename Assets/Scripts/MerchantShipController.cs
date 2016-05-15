@@ -7,6 +7,7 @@ public class MerchantShipController : ShipController {
 	// Use this for initialization
 	void Start () 
 	{
+		base.Start ();
 		myRenderer = GetComponentInChildren<Renderer> ();
 		Wander ();
 		enemyTags.Add ("Merchant");
@@ -30,7 +31,8 @@ public class MerchantShipController : ShipController {
 
         if (moveStatus != MovementStatus.Idle)
         {
-            steeringForce += AvoidObstacles();
+			steeringForce += AvoidObstacles () * obstacleAvoidanceWeight;
+			steeringForce += StayInArea ();
         }
 
         return steeringForce;

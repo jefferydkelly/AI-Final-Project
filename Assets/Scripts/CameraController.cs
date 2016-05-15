@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class CameraController : MonoBehaviour {
 	GameObject player = null;
+	public float roundTime = 300;
+	private PirateSpawn pSpawn;
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
+		StartRound ();
 	}
 	
 	// Update is called once per frame
@@ -19,5 +23,17 @@ public class CameraController : MonoBehaviour {
 		if (player != null && Input.GetKeyDown (KeyCode.Space)) {
 			Camera.main.transform.position = new Vector3 (transform.position.x, Camera.main.transform.position.y, transform.position.z);
 		}
+	}
+
+	void StartRound() {
+		pSpawn = GameObject.FindGameObjectWithTag ("Cove").GetComponent<PirateSpawn> ();
+		pSpawn.Spawn ();
+		Invoke ("EndRound", roundTime);
+	}
+
+	void EndRound() {
+		//pSpawn.roundEnd();
+		//Go To Round Over Screen - Ask Continue or Quit.
+		SceneManager.LoadScene("RoundOver");
 	}
 }

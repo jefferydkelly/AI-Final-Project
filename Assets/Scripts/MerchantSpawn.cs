@@ -36,7 +36,7 @@ public class MerchantSpawn : MonoBehaviour {
 		planetlist = GameObject.FindGameObjectsWithTag ("Planet").ToList();
 		origin = planetlist [Random.Range (0, planetlist.Count - 1)];
 		planetlist.Remove (origin);
-		GameObject merchclone = (GameObject) Instantiate(merchant, origin.transform.position, Quaternion.identity);
-		//merchclone.GetComponent<MerchantShipController> ().Seek (planetlist[Random.Range(0,planetlist.Count-1)]);
+
+		GameObject.Instantiate(merchant, origin.transform.position, Quaternion.identity);
 	}
 }
