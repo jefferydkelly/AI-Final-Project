@@ -103,4 +103,11 @@ public class ShipController : SteeringVehicle {
 
 		return Vector3.zero;
 	}
+
+	void OnTriggerEnter(Collider col) {
+		if (col.CompareTag ("Obstacle") || col.CompareTag ("Planet")) {
+			Debug.Log ("Crash");
+			Destroy (gameObject);
+		}
+	}
 }
