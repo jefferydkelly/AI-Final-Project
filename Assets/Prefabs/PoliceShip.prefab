@@ -146,7 +146,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 0
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300000, guid: b10dbf1081a91c54d948bfca5f9038ce, type: 3}
 --- !u!108 &10863714
 Light:
   m_ObjectHideFlags: 1
@@ -213,17 +213,15 @@ MonoBehaviour:
   maxSpeed: 100
   wanderAngSpeed: 1.5707964
   slowingDistance: 10
-  obstacleAvoidanceDistance: 100
-  obstacleAvoidanceWeight: 100
+  obstacleAvoidanceDistance: 10
+  obstacleAvoidanceWeight: 5
   flockRadius: 300
   separation: 1
   separationDistance: 50
   cohesion: 1
   alignmnet: 1
-  target: {fileID: 0}
   laserBase: {fileID: 171522, guid: cf4028e0b6e2e493ca4022304ecd8867, type: 2}
   fireDistance: 25
-  shotsFired: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

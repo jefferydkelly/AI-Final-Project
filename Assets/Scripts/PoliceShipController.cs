@@ -19,7 +19,7 @@ public class PoliceShipController : ShipController {
 
 		if (moveStatus == MovementStatus.Seek) {
 			float dist = (target.transform.position - transform.position).magnitude;
-
+			//bayesian classifier goes here
 			if (dist <= fireDistance) {
 				Fire ();
 			}
@@ -39,6 +39,15 @@ public class PoliceShipController : ShipController {
 				Invoke ("ResetCooldown", cooldown);
 			}
 		}
+	}
+
+	public bool DetectPotentialFiringObstacles()
+	{
+		Collider[] hitColliders = Physics.OverlapSphere (this.gameObject.transform.position, 100);
+		if (hitColliders.Length > 0)
+			return true;
+		else
+			return false;
 	}
 
     protected override Vector3 CalcSteeringForce() {

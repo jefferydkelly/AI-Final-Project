@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class MerchantShipController : ShipController {
 	private List<GameObject> possibleTargets;
+	private GameObject homePlanet = null;
+	private GameObject destPlanet= null;
 	// Use this for initialization
 	void Start () 
 	{
@@ -17,7 +19,9 @@ public class MerchantShipController : ShipController {
     protected override Vector3 CalcSteeringForce()
     {
         Vector3 steeringForce = Vector3.zero;
-		if (moveStatus == MovementStatus.Flee) {
+		if (moveStatus == MovementStatus.Seek) {
+			return SV_Seek (Destination);
+		} else if (moveStatus == MovementStatus.Flee) {
             if (target != null)
             {
                 steeringForce = SV_Flee(target);
@@ -38,6 +42,26 @@ public class MerchantShipController : ShipController {
         return steeringForce;
     }
 
+	public GameObject HomePlanet {
+		set {
+			homePlanet = value;
+		}
+
+		get {
+			return homePlanet;
+		}
+	}
+
+	public GameObject Destination {
+		set {
+			destPlanet = value;
+			moveStatus = MovementStatus.Seek;
+		}
+
+		get {
+			return destPlanet;
+		}
+	}
 	protected override void CalcMoveState() {
 		if (moveStatus == MovementStatus.Flee) {
 			if (!areTargetsInRange()) {
@@ -91,6 +115,14 @@ public class MerchantShipController : ShipController {
 		}
 
 		return closestTarget;
+	}
+
+	void OnTriggerEnter(Collider col) {
+		if (col.CompareTag ("Obstacle") || (col.CompareTag ("Planet") && col.gameObject != Destination && col.gameObject != HomePlanet)) {
+			Destroy (gameObject);
+		} else {
+			Debug.Log ("I'm a merchant and I'm fine.");
+		}
 	}
 }
 
