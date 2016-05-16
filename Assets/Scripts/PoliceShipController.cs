@@ -37,7 +37,7 @@ public class PoliceShipController : ShipController {
 
 	public override void Fire() {
 		if (canFire) {
-			if (shotsFired < 10) {
+			if (shotsFired < maxbullets) {
 				GameObject laser = GameObject.Instantiate (laserBase);
 				laser.transform.position = transform.position;
 				laser.transform.rotation = transform.rotation;
