@@ -41,22 +41,30 @@ public class Bullet : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col) {
-		ShipController ec = col.gameObject.GetComponent<ShipController> ();
-		//Update hits
-		if (ec == null) {
-			ec = col.gameObject.GetComponentInParent<ShipController> ();
-		}
-		if (ec != null) {
-			if (sc.IsEnemy (col.tag)) {
-				Debug.Log ("Hit " + col.tag);
-				if (sc.gameObject.CompareTag ("Cop"))
-				{
-					bool obs = sc.GetComponent<PoliceShipController> ().DetectPotentialFiringObstacles ();
-					sc.LogBulletStat (true, targetdist, obs, remainingshots);
+		Debug.Log ("Bullet fired by " + myController.tag + " hit " + col.tag);
+		if (!col.gameObject.CompareTag (myController.tag)) {
+			
+			ShipController ec = col.GetComponent<ShipController> ();
+			//Update hits
+			if (ec == null) {
+				ec = col.GetComponentInParent<ShipController> ();
+
+				if (ec == null) {
+					ec = col.GetComponentInChildren<ShipController> ();
 				}
-				ec.TakeDamage (dmg);
-				myController.RegisterHit ();
-				Destroy (gameObject);
+			}
+			Debug.Log (ec == null);
+			if (ec != null) {
+				if (sc.IsEnemy (col.tag)) {
+					Debug.Log ("Hit " + col.tag);
+					if (sc.gameObject.CompareTag ("Cop")) {
+						bool obs = sc.GetComponent<PoliceShipController> ().DetectPotentialFiringObstacles ();
+						sc.LogBulletStat (true, targetdist, obs, remainingshots);
+					}
+					ec.TakeDamage (dmg);
+					myController.RegisterHit ();
+					Destroy (gameObject);
+				}
 			}
 		}
 	}
