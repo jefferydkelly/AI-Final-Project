@@ -74,10 +74,10 @@ public class PoliceShipController : ShipController {
 	{
 		if (moveStatus == MovementStatus.Wander) {
 			if (areTargetsInRange ()) {
+	
                 GameObject tar = FindTarget();
                 if (tar != null)
 				{
-					Debug.Log ("I should be seeking");
                     Seek(tar);
                 }
 			}
@@ -102,7 +102,7 @@ public class PoliceShipController : ShipController {
 
 	public bool areTargetsInRange() {
 		possibleTargets = new List<GameObject> ();
-		Collider[] colls = Physics.OverlapSphere(transform.position, 50.0f);
+		Collider[] colls = Physics.OverlapSphere(transform.position, 500.0f);
 		foreach (Collider col in colls) {
 			if (col.CompareTag ("Pirate")) {
 				possibleTargets.Add (col.gameObject);	
