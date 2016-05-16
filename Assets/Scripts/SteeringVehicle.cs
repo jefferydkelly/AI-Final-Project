@@ -191,13 +191,17 @@ public class SteeringVehicle : MonoBehaviour {
 		ObstacleController oc = obstacle.GetComponent<ObstacleController> ();
 		if (oc != null) {
 			Vector3 fwd = transform.forward.normalized;
-			Vector3 dif = obstacle.transform.position - transform.position;
-			float dot = Vector3.Dot (fwd, dif);
-			if (dot > 0 && dot < (obstacleAvoidanceDistance + oc.radius)) {
-				Vector3 fd = fwd * (1 + dif.magnitude) - obstacle.transform.position;
+			RaycastHit hit;
+			if (Physics.Raycast (transform.position, fwd, out hit, obstacleAvoidanceDistance + oc.radius)) {
+				if (hit.collider.gameObject == obstacle) {
+					Vector3 dif = obstacle.transform.position - transform.position;
+				
+					Vector3 fd = fwd * (1 + dif.magnitude) - hit.point;
 
-				return  fd.normalized * maxSpeed - velocity;
+						return  fd.normalized * maxSpeed - velocity;
+				}
 			}
+
 		}
         return Vector3.zero;
 	}
