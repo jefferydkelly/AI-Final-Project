@@ -11,6 +11,8 @@ GameObject:
   - 114: {fileID: 11422594}
   - 64: {fileID: 6424172}
   - 33: {fileID: 3317860}
+  - 54: {fileID: 5485592}
+  - 65: {fileID: 6564174}
   m_Layer: 0
   m_Name: PirateShip
   m_TagString: Pirate
@@ -93,7 +95,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163886}
-  m_Mesh: {fileID: 4300000, guid: b10dbf1081a91c54d948bfca5f9038ce, type: 3}
+  m_Mesh: {fileID: 4300000, guid: a109d744a779545ec89d698bbfa958e9, type: 3}
 --- !u!33 &3331688
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -101,6 +103,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 184468}
   m_Mesh: {fileID: 4300000, guid: a109d744a779545ec89d698bbfa958e9, type: 3}
+--- !u!54 &5485592
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 163886}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!64 &6412722
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -124,7 +141,19 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 0
-  m_Mesh: {fileID: 4300000, guid: b10dbf1081a91c54d948bfca5f9038ce, type: 3}
+  m_Mesh: {fileID: 4300000, guid: a109d744a779545ec89d698bbfa958e9, type: 3}
+--- !u!65 &6564174
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 163886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11422594
 MonoBehaviour:
   m_ObjectHideFlags: 1

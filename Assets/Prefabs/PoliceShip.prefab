@@ -213,7 +213,7 @@ MonoBehaviour:
   maxSpeed: 100
   wanderAngSpeed: 1.5707964
   slowingDistance: 10
-  obstacleAvoidanceDistance: 100
+  obstacleAvoidanceDistance: 200
   obstacleAvoidanceWeight: 100
   flockRadius: 300
   separation: 1

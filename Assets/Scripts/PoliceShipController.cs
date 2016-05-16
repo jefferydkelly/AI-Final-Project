@@ -39,7 +39,7 @@ public class PoliceShipController : ShipController {
 		if (canFire) {
 			if (shotsFired < 10) {
 				GameObject laser = GameObject.Instantiate (laserBase);
-				laser.transform.position = transform.position + transform.forward * (depth + laser.GetComponent<Bullet> ().depth);
+				laser.transform.position = transform.position;
 				laser.transform.rotation = transform.rotation;
 				laser.GetComponent<Bullet> ().fwd = Forward;
 				canFire = false;
