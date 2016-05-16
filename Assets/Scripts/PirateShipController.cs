@@ -111,7 +111,11 @@ public class PirateShipController : ShipController {
 			bool isInRange = isTargetInRange ();
 			int i = 0;
 			while (!isInRange && i < flock.Count) {
-				isInRange = flock [i].GetComponent<PirateShipController> ().isTargetInRange ();
+				GameObject flockmate = flock [i];
+				if (flockmate != null) {
+					PirateShipController psc = flockmate.GetComponent<PirateShipController> ();
+					isInRange = psc != null && psc.isTargetInRange ();
+				}
 				i++;
 			}
 
