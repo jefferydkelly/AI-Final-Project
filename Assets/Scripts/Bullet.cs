@@ -18,10 +18,14 @@ public class Bullet : MonoBehaviour {
 		depth = GetComponent<MeshRenderer> ().bounds.size.z;
 		sc = myController.GetComponentInParent<ShipController> ();
 		sv = myController.GetComponentInParent<SteeringVehicle> ();
-		targetdist = Vector3.Distance(sc.gameObject.transform.position, sv.target.transform.position);
-		obs = myController.GetComponentInParent<PoliceShipController> ().DetectPotentialFiringObstacles();
-		remainingshots = myController.GetComponentInParent<PoliceShipController> ().maxbullets - sc.shotsFired;
-		Invoke ("Remove", lifeSpan);
+		if(sc.gameObject.CompareTag("Cop"))
+		{
+			targetdist = Vector3.Distance(sc.gameObject.transform.position, sv.target.transform.position);
+			obs = myController.GetComponentInParent<PoliceShipController> ().DetectPotentialFiringObstacles();
+			remainingshots = myController.GetComponentInParent<PoliceShipController> ().maxbullets - sc.shotsFired;
+		}
+			Invoke ("Remove", lifeSpan);
+		
 	}
 	void Update() {
 		transform.position += fwd * moveSpeed * Time.deltaTime;
