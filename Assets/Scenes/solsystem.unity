@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   police: {fileID: 128868, guid: e315e830547a2954fb2d0a09d8a99dee, type: 2}
-  max_police: 3
+  max_police: 10
   spawndelay: 3
 --- !u!114 &48627710
 MonoBehaviour:

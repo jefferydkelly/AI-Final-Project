@@ -8,9 +8,19 @@ public class Bullet : MonoBehaviour {
 	public float depth = 0;
 	public Vector3 fwd = Vector3.zero;
 	public ShipController myController;
+	ShipController sc;
+	SteeringVehicle sv;
+	bool obs;
+	int remainingshots;
+	float targetdist;
 
 	void Start() {
 		depth = GetComponent<MeshRenderer> ().bounds.size.z;
+		sc = myController.GetComponentInParent<ShipController> ();
+		sv = myController.GetComponentInParent<SteeringVehicle> ();
+		targetdist = Vector3.Distance(sc.gameObject.transform.position, sv.target.transform.position);
+		obs = myController.GetComponentInParent<PoliceShipController> ().DetectPotentialFiringObstacles();
+		remainingshots = myController.GetComponentInParent<PoliceShipController> ().maxbullets - sc.shotsFired;
 		Invoke ("Remove", lifeSpan);
 	}
 	void Update() {
@@ -18,18 +28,15 @@ public class Bullet : MonoBehaviour {
 	}
 
 	void Remove() {
-		ShipController sc = myController.GetComponent<ShipController> ();
-		SteeringVehicle sv = myController.GetComponent<SteeringVehicle> ();
-		if (sc.gameObject.CompareTag ("Cop")) 
-		{
-			bool obs = sc.GetComponent<PoliceShipController> ().DetectPotentialFiringObstacles ();
-			sc.LogBulletStat (false, Vector3.Distance (sc.gameObject.transform.position, sv.target.transform.position), obs, 3 - sc.shotsFired);
-		}
+		if(sc!=null)
+			if (sc.gameObject.CompareTag ("Cop"))
+			{
+				sc.LogBulletStat (false, targetdist, obs, remainingshots);
+			}
 		Destroy (gameObject);
 	}
 
 	void OnTriggerEnter(Collider col) {
-		ShipController sc = myController.GetComponent<ShipController> ();
 		ShipController ec = col.gameObject.GetComponent<ShipController> ();
 		//Update hits
 		if (ec == null) {
@@ -38,10 +45,10 @@ public class Bullet : MonoBehaviour {
 		if (ec != null) {
 			if (sc.IsEnemy (col.tag)) {
 				Debug.Log ("Hit " + col.tag);
-				if (sc.gameObject.CompareTag ("Cop")) 
+				if (sc.gameObject.CompareTag ("Cop"))
 				{
 					bool obs = sc.GetComponent<PoliceShipController> ().DetectPotentialFiringObstacles ();
-					sc.LogBulletStat (true, Vector3.Distance (sc.gameObject.transform.position, ec.gameObject.transform.position), obs, 3 - sc.shotsFired);
+					sc.LogBulletStat (true, targetdist, obs, remainingshots);
 				}
 				ec.TakeDamage (dmg);
 				myController.RegisterHit ();

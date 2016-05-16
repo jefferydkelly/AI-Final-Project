@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class PoliceShipController : ShipController {
 	private List<GameObject> possibleTargets;
+	public int maxbullets = 100;
+	float timecount = 0;
 	public PoliceSpawn spawner;
 	// Use this for initialization
 
@@ -19,19 +21,23 @@ public class PoliceShipController : ShipController {
 		base.Update ();
 
 		if (moveStatus == MovementStatus.Seek) {
-			Debug.Log ("Starting firing decider...");
-			float dist = (target.transform.position - transform.position).magnitude;
+			float dist = (target.transform.position - transform.position).magnitude;/*
 			bool obs = DetectPotentialFiringObstacles ();
-			bool shouldfire = GameObject.Find("Planet A").GetComponent<BayesScript> ().Decide (dist, obs, 3 - shotsFired);
-			Debug.Log ("Should I fire? "+shouldfire+"!");
-			if (shouldfire)
+			bool shouldfire = GameObject.Find("Planet A").GetComponent<BayesScript> ().Decide (dist, obs, maxbullets - shotsFired);
+			Debug.Log ("Should I fire? "+shouldfire+"!");*/
+			timecount += Time.deltaTime;
+			if ((dist < fireDistance) &&(timecount > 0.5f))
+			{
+				timecount = 0;
+				Debug.Log ("Attempting to fire!");
 				Fire ();
+			}
 		}
 	}
 
 	public override void Fire() {
 		if (canFire) {
-			if (shotsFired < 3) {
+			if (shotsFired < 10) {
 				GameObject laser = GameObject.Instantiate (laserBase);
 				laser.transform.position = transform.position + transform.forward * (depth + laser.GetComponent<Bullet> ().depth);
 				laser.transform.rotation = transform.rotation;
@@ -46,7 +52,7 @@ public class PoliceShipController : ShipController {
 
 	public bool DetectPotentialFiringObstacles()
 	{
-		Collider[] hitColliders = Physics.OverlapSphere (this.gameObject.transform.position, 100);
+		Collider[] hitColliders = Physics.OverlapSphere (this.gameObject.transform.position, 75);
 		if (hitColliders.Length > 0)
 			return true;
 		else
