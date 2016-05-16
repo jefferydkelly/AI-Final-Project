@@ -29,7 +29,7 @@ public class PoliceSpawn : MonoBehaviour {
 	void Spawn()
 	{
 		if (polcount < max_police) {
-			GameObject cop = GameObject.Instantiate (police, transform.position, Quaternion.identity);
+			GameObject cop = GameObject.Instantiate (police, transform.position, Quaternion.identity) as GameObject;
 			cop.GetComponent<PoliceShipController> ().spawner = this;
 			polcount++;
 		}
