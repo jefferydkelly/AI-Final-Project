@@ -196,7 +196,7 @@ public class SteeringVehicle : MonoBehaviour {
 				if (hit.collider.gameObject == obstacle) {
 					Vector3 dif = obstacle.transform.position - transform.position;
 				
-					Vector3 fd = fwd * (1 + dif.magnitude) - hit.point;
+					Vector3 fd = fwd * (1 + dif.magnitude) - oc.transform.position;
 
 						return  fd.normalized * maxSpeed - velocity;
 				}
