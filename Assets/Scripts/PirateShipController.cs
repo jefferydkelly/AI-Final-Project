@@ -147,9 +147,9 @@ public class PirateShipController : ShipController {
 	}
 	public bool isTargetInRange() {
 		if (moveStatus == MovementStatus.Seek || moveStatus == MovementStatus.FlockSeek) {
-			return Vector3.Distance (target.transform.position, transform.position) <= chaseMerchDistance;
+			return target != null && Vector3.Distance (target.transform.position, transform.position) <= chaseMerchDistance;
 		} else if (moveStatus == MovementStatus.Flee || moveStatus == MovementStatus.FlockFlee) {
-			return Vector3.Distance (target.transform.position, transform.position) <= fleeDistance;
+			return target != null && Vector3.Distance (target.transform.position, transform.position) <= fleeDistance;
 		}
 
 		return false;
