@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿and using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -66,9 +66,9 @@ public class MerchantShipController : ShipController {
 	protected override void CalcMoveState() {
 		if (moveStatus == MovementStatus.Flee) {
 			if (!areTargetsInRange()) {
-				Wander ();
+				Seek ();
 			}
-		} else if (moveStatus == MovementStatus.Wander) {
+		} else if (moveStatus == MovementStatus.Seek) {
 			if (areTargetsInRange()) {
                 GameObject tar = FindTarget();
                 if (tar != null)

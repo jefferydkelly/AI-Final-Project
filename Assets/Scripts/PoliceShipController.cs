@@ -82,7 +82,7 @@ public class PoliceShipController : ShipController {
                 }
 			}
 		} else if (moveStatus == MovementStatus.Seek) {
-			if (!areTargetsInRange ()) {
+			if (!areTargetsInRange () || target == null) {
 				Wander ();
 			}
 		}
