@@ -23,6 +23,9 @@ public class CameraController : MonoBehaviour {
 		if (player != null && Input.GetKeyDown (KeyCode.Space)) {
 			Camera.main.transform.position = new Vector3 (transform.position.x, Camera.main.transform.position.y, transform.position.z);
 		}
+
+		if (GameObject.FindGameObjectWithTag ("Player") == null)
+			EndRound ();
 	}
 
 	void StartRound() {
