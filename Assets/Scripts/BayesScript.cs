@@ -151,7 +151,8 @@ public class BayesScript : MonoBehaviour {
 	{
 		double playYes = CalcBayes (true, targetdist, obstacles, remainingshots);
 		double playNo = CalcBayes (false, targetdist, obstacles, remainingshots);
-		return playYes > playNo;
+		//Debug.Log ("playYes" + playYes + "   playNo" + playNo);
+		return (5f*playYes) > playNo;
 	}
 		
 	// Standard statistical functions.  These should be useful without modification. 

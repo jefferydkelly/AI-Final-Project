@@ -21,12 +21,12 @@ public class PoliceShipController : ShipController {
 		base.Update ();
 
 		if (moveStatus == MovementStatus.Seek) {
-			float dist = (target.transform.position - transform.position).magnitude;/*
+			float dist = (target.transform.position - transform.position).magnitude;
 			bool obs = DetectPotentialFiringObstacles ();
 			bool shouldfire = GameObject.Find("Planet A").GetComponent<BayesScript> ().Decide (dist, obs, maxbullets - shotsFired);
-			Debug.Log ("Should I fire? "+shouldfire+"!");*/
+			Debug.Log ("Should I fire? "+shouldfire+"!");
 			timecount += Time.deltaTime;
-			if ((dist < fireDistance) &&(timecount > 0.5f))
+			if (/*(dist < fireDistance) &&*/(timecount > 0.5f)&&(shouldfire))
 			{
 				timecount = 0;
 				Debug.Log ("Attempting to fire!");
@@ -53,10 +53,16 @@ public class PoliceShipController : ShipController {
 	public bool DetectPotentialFiringObstacles()
 	{
 		Collider[] hitColliders = Physics.OverlapSphere (this.gameObject.transform.position, 75);
-		if (hitColliders.Length > 0)
-			return true;
-		else
-			return false;
+		bool result = false;
+		if (hitColliders.Length > 0) 
+		{
+			foreach (Collider col in hitColliders) 
+			{
+				if((col.gameObject.tag == "Planet")||(col.gameObject.tag == "Obstacle"))
+					result = true;
+			}
+		}
+		return result;
 	}
 
     protected override Vector3 CalcSteeringForce() {
